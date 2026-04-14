@@ -1,0 +1,7 @@
+#Mon Apr 13 20:11:38 WIB 2026
+base.1=D\:\\branchsqllite\\branch-performance-main\\android\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes2.dex
+path.1=classes2.dex
+base.0=D\:\\branchsqllite\\branch-performance-main\\android\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+path.0=classes.dex
