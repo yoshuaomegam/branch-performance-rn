@@ -28,6 +28,11 @@ import {KreditRingkasanKPI} from '../../components/bisnis/KreditRingkasanKPI';
 import {KreditBookingCard} from '../../components/bisnis/KreditBookingCard';
 import {TrenPencairanChart} from '../../components/bisnis/TrenPencairanChart';
 import {KreditProdukCard} from '../../components/bisnis/KreditProdukCard';
+import {LivinRingkasanKPI} from '../../components/bisnis/LivinRingkasanKPI';
+import {LivinChannelCard} from '../../components/bisnis/LivinChannelCard';
+import {LivinTrenChart} from '../../components/bisnis/LivinTrenChart';
+import {LivinProgresCard} from '../../components/bisnis/LivinProgresCard';
+import {LivinFrekuensiCard} from '../../components/bisnis/LivinFrekuensiCard';
 import {useBranchPerformance} from '../../hooks/useBranchPerformance';
 import rawData from '../../data/branchPerformanceData.json';
 
@@ -169,6 +174,17 @@ export function DashboardKinerjaCabangScreen() {
             <KreditBookingCard data={appData.bisnisKredit.booking} />
             <TrenPencairanChart data={appData.bisnisKredit.trendPencairan} />
             <KreditProdukCard data={appData.bisnisKredit.produk} />
+          </>
+        )}
+
+        {isBisnis && activeSubMenu === 'Livin' && (
+          <>
+            <EndingBalanceCard data={appData.bisnisLivin.endingBalance} />
+            <LivinRingkasanKPI data={appData.bisnisLivin.ringkasanKPI} />
+            <LivinChannelCard data={appData.bisnisLivin.channel} />
+            <LivinTrenChart data={appData.bisnisLivin.trendUreg} />
+            <LivinProgresCard data={appData.bisnisLivin.progres} />
+            <LivinFrekuensiCard data={appData.bisnisLivin.frekuensi} />
           </>
         )}
 

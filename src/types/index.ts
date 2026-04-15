@@ -353,6 +353,69 @@ export interface BisnisKredit {
   produk: KreditProdukData;
 }
 
+// Bisnis Livin types
+export interface LivinKPIStat {
+  label: string;
+  nilai: string;
+  keterangan?: string | null;
+  keteranganStatus?: 'good' | 'warning' | 'bad' | 'neutral';
+}
+
+export interface LivinRingkasanKPIData {
+  stats: LivinKPIStat[];
+}
+
+export interface LivinChannelSegment {
+  label: string;
+  pct: number;
+  warna: string;
+}
+
+export interface LivinChannelRow {
+  channel: string;
+  ureg: number;
+  growth: string;
+  growthUp: boolean;
+}
+
+export interface LivinChannelData {
+  title: string;
+  segments: LivinChannelSegment[];
+  rows: LivinChannelRow[];
+}
+
+export interface LivinProgresItem {
+  label: string;
+  nilai: number;
+  pct: number;
+}
+
+export interface LivinProgresData {
+  chips: string[];
+  byChip: Record<string, LivinProgresItem[]>;
+  infoBox: string;
+}
+
+export interface LivinFrekuensiItem {
+  label: string;
+  jumlah: number;
+  pct: number;
+}
+
+export interface LivinFrekuensiData {
+  chips: string[];
+  byChip: Record<string, LivinFrekuensiItem[]>;
+}
+
+export interface BisnisLivin {
+  endingBalance: DPKEndingBalance;
+  ringkasanKPI: LivinRingkasanKPIData;
+  channel: LivinChannelData;
+  trendUreg: TrenPencairanData;
+  progres: LivinProgresData;
+  frekuensi: LivinFrekuensiData;
+}
+
 export interface DashboardData {
   cabang: CabangInfo;
   periode: string;

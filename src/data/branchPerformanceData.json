@@ -467,5 +467,149 @@
         ]
       }
     }
+  },
+  "bisnisLivin": {
+    "endingBalance": {
+      "label": "Livin",
+      "tanggal": "31 Mar 2026",
+      "nilai": "100 UREG",
+      "target": "≥ 150 UREG",
+      "keterangan": "-50 User (33,3%). Masih di Bawah Target",
+      "keteranganUp": false,
+      "perbandingan": [
+        { "tanggal": "Feb 2026", "nilai": "95 UREG", "growth": "5,3% MoM", "growthUp": true },
+        { "tanggal": "Jan 2026", "nilai": "78 UREG", "growth": "28,2% YtD", "growthUp": true },
+        { "tanggal": "Mar 2025", "nilai": "82 UREG", "growth": "21,9% YoY", "growthUp": true }
+      ]
+    },
+    "ringkasanKPI": {
+      "stats": [
+        { "label": "Total Nasabah", "nilai": "1.840", "keterangan": null, "keteranganStatus": "neutral" },
+        { "label": "UREG", "nilai": "100", "keterangan": "67% Addressable", "keteranganStatus": "good" },
+        { "label": "USAK", "nilai": "50", "keterangan": "50% dari UREG", "keteranganStatus": "warning" },
+        { "label": "SV Total", "nilai": "Rp4,8M", "keterangan": "↑11,6%", "keteranganStatus": "good" },
+        { "label": "Frek. Rata-Rata", "nilai": "38,7x", "keterangan": null, "keteranganStatus": "neutral" },
+        { "label": "UREG Akuisisi", "nilai": "4", "keterangan": "Per Hari", "keteranganStatus": "neutral" }
+      ]
+    },
+    "channel": {
+      "title": "Rincian Channel Akuisisi",
+      "segments": [
+        { "label": "Digital", "pct": 62, "warna": "#074DB6" },
+        { "label": "Branch", "pct": 38, "warna": "#A2CFFF" }
+      ],
+      "rows": [
+        { "channel": "Digital", "ureg": 62, "growth": "8,3%", "growthUp": true },
+        { "channel": "Branch", "ureg": 38, "growth": "3,1%", "growthUp": true }
+      ]
+    },
+    "trendUreg": {
+      "chips": ["MoM", "YtD", "YoY"],
+      "allBars": [
+        { "date": "2026-03-01", "label": "1 Mar", "nilai": 3 },
+        { "date": "2026-03-02", "label": "2 Mar", "nilai": 2 },
+        { "date": "2026-03-03", "label": "3 Mar", "nilai": 4 },
+        { "date": "2026-03-04", "label": "4 Mar", "nilai": 3 },
+        { "date": "2026-03-05", "label": "5 Mar", "nilai": 2 },
+        { "date": "2026-03-06", "label": "6 Mar", "nilai": 4 },
+        { "date": "2026-03-07", "label": "7 Mar", "nilai": 5 },
+        { "date": "2026-03-08", "label": "8 Mar", "nilai": 3 },
+        { "date": "2026-03-09", "label": "9 Mar", "nilai": 2 },
+        { "date": "2026-03-10", "label": "10 Mar", "nilai": 4 },
+        { "date": "2026-03-11", "label": "11 Mar", "nilai": 4 },
+        { "date": "2026-03-12", "label": "12 Mar", "nilai": 3 },
+        { "date": "2026-03-13", "label": "13 Mar", "nilai": 2 },
+        { "date": "2026-03-14", "label": "14 Mar", "nilai": 3 },
+        { "date": "2026-03-15", "label": "15 Mar", "nilai": 5 },
+        { "date": "2026-03-16", "label": "16 Mar", "nilai": 3 },
+        { "date": "2026-03-17", "label": "17 Mar", "nilai": 2 },
+        { "date": "2026-03-18", "label": "18 Mar", "nilai": 4 },
+        { "date": "2026-03-19", "label": "19 Mar", "nilai": 3 },
+        { "date": "2026-03-20", "label": "20 Mar", "nilai": 2 },
+        { "date": "2026-03-21", "label": "21 Mar", "nilai": 3 },
+        { "date": "2026-03-22", "label": "22 Mar", "nilai": 4 },
+        { "date": "2026-03-23", "label": "23 Mar", "nilai": 3 },
+        { "date": "2026-03-24", "label": "24 Mar", "nilai": 2 },
+        { "date": "2026-03-25", "label": "25 Mar", "nilai": 3 },
+        { "date": "2026-03-26", "label": "26 Mar", "nilai": 6 },
+        { "date": "2026-03-27", "label": "27 Mar", "nilai": 3 },
+        { "date": "2026-03-28", "label": "28 Mar", "nilai": 3 },
+        { "date": "2026-03-29", "label": "29 Mar", "nilai": 4 },
+        { "date": "2026-03-30", "label": "30 Mar", "nilai": 3 },
+        { "date": "2026-03-31", "label": "31 Mar", "nilai": 3 }
+      ],
+      "defaultRange": { "start": "2026-03-16", "end": "2026-03-31" }
+    },
+    "progres": {
+      "chips": ["Semua", "Badan Usaha", "Payroll", "Prioritas", "Individu"],
+      "byChip": {
+        "Semua": [
+          { "label": "Addressable", "nilai": 1510, "pct": 82 },
+          { "label": "UREG",        "nilai": 100,  "pct": 5  },
+          { "label": "USAK",        "nilai": 50,   "pct": 3  }
+        ],
+        "Badan Usaha": [
+          { "label": "Addressable", "nilai": 250, "pct": 83 },
+          { "label": "UREG",        "nilai": 30,  "pct": 10 },
+          { "label": "USAK",        "nilai": 15,  "pct": 5  }
+        ],
+        "Payroll": [
+          { "label": "Addressable", "nilai": 680, "pct": 85 },
+          { "label": "UREG",        "nilai": 40,  "pct": 5  },
+          { "label": "USAK",        "nilai": 20,  "pct": 3  }
+        ],
+        "Prioritas": [
+          { "label": "Addressable", "nilai": 180, "pct": 90 },
+          { "label": "UREG",        "nilai": 15,  "pct": 8  },
+          { "label": "USAK",        "nilai": 8,   "pct": 4  }
+        ],
+        "Individu": [
+          { "label": "Addressable", "nilai": 400, "pct": 74 },
+          { "label": "UREG",        "nilai": 15,  "pct": 3  },
+          { "label": "USAK",        "nilai": 7,   "pct": 1  }
+        ]
+      },
+      "infoBox": "50 Nasabah UREG belum USAK. Lakukan pendampingan transaksi untuk meningkatkan konversi USAK."
+    },
+    "frekuensi": {
+      "chips": ["Semua", "Badan Usaha", "Payroll", "Prioritas", "Individu"],
+      "byChip": {
+        "Semua": [
+          { "label": "0 Trx",     "jumlah": 20, "pct": 20 },
+          { "label": "1–5 Trx",   "jumlah": 15, "pct": 15 },
+          { "label": "6–15 Trx",  "jumlah": 30, "pct": 30 },
+          { "label": "16–20 Trx", "jumlah": 20, "pct": 20 },
+          { "label": ">20 Trx",   "jumlah": 15, "pct": 15 }
+        ],
+        "Badan Usaha": [
+          { "label": "0 Trx",     "jumlah": 5,  "pct": 17 },
+          { "label": "1–5 Trx",   "jumlah": 8,  "pct": 27 },
+          { "label": "6–15 Trx",  "jumlah": 10, "pct": 33 },
+          { "label": "16–20 Trx", "jumlah": 4,  "pct": 13 },
+          { "label": ">20 Trx",   "jumlah": 3,  "pct": 10 }
+        ],
+        "Payroll": [
+          { "label": "0 Trx",     "jumlah": 8,  "pct": 20 },
+          { "label": "1–5 Trx",   "jumlah": 5,  "pct": 13 },
+          { "label": "6–15 Trx",  "jumlah": 12, "pct": 30 },
+          { "label": "16–20 Trx", "jumlah": 10, "pct": 25 },
+          { "label": ">20 Trx",   "jumlah": 5,  "pct": 13 }
+        ],
+        "Prioritas": [
+          { "label": "0 Trx",     "jumlah": 2, "pct": 13 },
+          { "label": "1–5 Trx",   "jumlah": 2, "pct": 13 },
+          { "label": "6–15 Trx",  "jumlah": 4, "pct": 27 },
+          { "label": "16–20 Trx", "jumlah": 4, "pct": 27 },
+          { "label": ">20 Trx",   "jumlah": 3, "pct": 20 }
+        ],
+        "Individu": [
+          { "label": "0 Trx",     "jumlah": 5, "pct": 33 },
+          { "label": "1–5 Trx",   "jumlah": 0, "pct": 0  },
+          { "label": "6–15 Trx",  "jumlah": 4, "pct": 27 },
+          { "label": "16–20 Trx", "jumlah": 2, "pct": 13 },
+          { "label": ">20 Trx",   "jumlah": 4, "pct": 27 }
+        ]
+      }
+    }
   }
 }
