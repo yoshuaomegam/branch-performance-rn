@@ -1,0 +1,37 @@
+{
+  "ringkasanKPI": {
+    "kategoriList": [],
+    "periodList": [
+      "DoD",
+      "MoM",
+      "YtD",
+      "YoY"
+    ],
+    "data": {
+      "Operasional": {
+        "seksi": []
+      }
+    }
+  },
+  "skorOperasional": {
+    "skor": 88,
+    "periode": "Mar 2026",
+    "items": [
+      {
+        "id": "layanan",
+        "nama": "Layanan Cabang",
+        "skor": 90
+      },
+      {
+        "id": "sla_kredit",
+        "nama": "SLA Kredit",
+        "skor": 88
+      },
+      {
+        "id": "sla_edc",
+        "nama": "SLA Pemasangan EDC",
+        "skor": 86
+      }
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "ringkasanKPI": {
+    "kategoriList": [],
+    "periodList": [
+      "DoD",
+      "MoM",
+      "YtD",
+      "YoY"
+    ],
+    "data": {
+      "Finansial": {
+        "seksi": []
+      }
+    }
+  },
+  "skorFinansial": {
+    "skor": 68,
+    "periode": "Mar 2026",
+    "items": [
+      {
+        "id": "cof",
+        "nama": "CoF",
+        "skor": 71
+      },
+      {
+        "id": "yol",
+        "nama": "YoL",
+        "skor": 70
+      },
+      {
+        "id": "fbi",
+        "nama": "FBI",
+        "skor": 63
+      }
+    ]
+  }
+}

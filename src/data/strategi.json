@@ -1,0 +1,32 @@
+{
+  "ringkasanKPI": {
+    "kategoriList": [],
+    "periodList": [
+      "DoD",
+      "MoM",
+      "YtD",
+      "YoY"
+    ],
+    "data": {
+      "Strategi": {
+        "seksi": []
+      }
+    }
+  },
+  "skorStrategi": {
+    "skor": 74,
+    "periode": "Mar 2026",
+    "items": [
+      {
+        "id": "ekosistem",
+        "nama": "Ekosistem",
+        "skor": 76
+      },
+      {
+        "id": "gmm",
+        "nama": "GMM",
+        "skor": 72
+      }
+    ]
+  }
+}

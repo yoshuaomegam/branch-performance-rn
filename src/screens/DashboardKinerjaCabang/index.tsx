@@ -39,9 +39,6 @@ import {LivinTrenChart} from '../../components/bisnis/LivinTrenChart';
 import {LivinProgresCard} from '../../components/bisnis/LivinProgresCard';
 import {LivinFrekuensiCard} from '../../components/bisnis/LivinFrekuensiCard';
 import {useBranchPerformance} from '../../hooks/useBranchPerformance';
-import rawData from '../../data/branchPerformanceData.json';
-
-const appData = rawData as any;
 
 const BISNIS_SUB_MENUS = ['Ringkasan', 'DPK', 'Kredit', 'Livin', 'Kopra', 'Merchant'];
 
@@ -59,6 +56,12 @@ export function DashboardKinerjaCabangScreen() {
     temuanAudit,
     marketShare,
     ringkasanKPI,
+    bisnisDPK,
+    bisnisKredit,
+    bisnisKopra,
+    bisnisLivin,
+    bisnisMerchant,
+    bisnisRingkasan,
     selectedTab,
     TABS,
     handleTabChange,
@@ -156,68 +159,68 @@ export function DashboardKinerjaCabangScreen() {
         {isBisnis && activeSubMenu === 'Ringkasan' && (
           <>
             <SkorSectionCard title="Skor Bisnis" data={skorBisnis} />
-            <RingkasanPencapaian data={appData.bisnisRingkasan.ringkasanPencapaian} />
+            <RingkasanPencapaian data={bisnisRingkasan.ringkasanPencapaian} />
           </>
         )}
 
         {isBisnis && activeSubMenu === 'DPK' && (
           <>
-            <EndingBalanceCard data={appData.bisnisDPK.endingBalance} />
-            <BarTableCard data={appData.bisnisDPK.rincianDPK} />
-            <BarTableCard data={appData.bisnisDPK.tabungan3PI} />
-            <AkuisiChurnCard data={appData.bisnisDPK.akuisiChurn} />
-            <TrendEndbalCard data={appData.bisnisDPK.trendEndbal} />
+            <EndingBalanceCard data={bisnisDPK.endingBalance} />
+            <BarTableCard data={bisnisDPK.rincianDPK} />
+            <BarTableCard data={bisnisDPK.tabungan3PI} />
+            <AkuisiChurnCard data={bisnisDPK.akuisiChurn} />
+            <TrendEndbalCard data={bisnisDPK.trendEndbal} />
           </>
         )}
 
         {isBisnis && activeSubMenu === 'Kredit' && (
           <>
-            <EndingBalanceCard data={appData.bisnisKredit.endingBalance} />
-            <KreditRingkasanKPI data={appData.bisnisKredit.ringkasanKPI} />
-            <KreditBookingCard data={appData.bisnisKredit.booking} />
-            <TrenPencairanChart data={appData.bisnisKredit.trendPencairan} />
-            <KreditProdukCard data={appData.bisnisKredit.produk} />
+            <EndingBalanceCard data={bisnisKredit.endingBalance} />
+            <KreditRingkasanKPI data={bisnisKredit.ringkasanKPI} />
+            <KreditBookingCard data={bisnisKredit.booking} />
+            <TrenPencairanChart data={bisnisKredit.trendPencairan} />
+            <KreditProdukCard data={bisnisKredit.produk} />
           </>
         )}
 
         {isBisnis && activeSubMenu === 'Kopra' && (
           <>
-            <EndingBalanceCard data={appData.bisnisKopra.endingBalance} />
-            <LivinRingkasanKPI data={appData.bisnisKopra.ringkasanKPI} columns={2} />
-            <LivinTrenChart data={appData.bisnisKopra.trendUreg} />
-            <KopraKeaktifanCard data={appData.bisnisKopra.keaktifan} />
-            <KopraPipelineCard data={appData.bisnisKopra.pipeline} />
+            <EndingBalanceCard data={bisnisKopra.endingBalance} />
+            <LivinRingkasanKPI data={bisnisKopra.ringkasanKPI} columns={2} />
+            <LivinTrenChart data={bisnisKopra.trendUreg} />
+            <KopraKeaktifanCard data={bisnisKopra.keaktifan} />
+            <KopraPipelineCard data={bisnisKopra.pipeline} />
           </>
         )}
 
         {isBisnis && activeSubMenu === 'Livin' && (
           <>
-            <EndingBalanceCard data={appData.bisnisLivin.endingBalance} />
-            <LivinRingkasanKPI data={appData.bisnisLivin.ringkasanKPI} />
-            <LivinChannelCard data={appData.bisnisLivin.channel} />
-            <LivinTrenChart data={appData.bisnisLivin.trendUreg} />
-            <LivinProgresCard data={appData.bisnisLivin.progres} />
-            <LivinFrekuensiCard data={appData.bisnisLivin.frekuensi} />
+            <EndingBalanceCard data={bisnisLivin.endingBalance} />
+            <LivinRingkasanKPI data={bisnisLivin.ringkasanKPI} />
+            <LivinChannelCard data={bisnisLivin.channel} />
+            <LivinTrenChart data={bisnisLivin.trendUreg} />
+            <LivinProgresCard data={bisnisLivin.progres} />
+            <LivinFrekuensiCard data={bisnisLivin.frekuensi} />
           </>
         )}
 
-        {/* ── Merchant tab ── */}
+        {/* ── Merchant sub-menu ── */}
         {isBisnis && activeSubMenu === 'Merchant' && (
           <>
             {/* EDC section */}
-            <EndingBalanceCard data={appData.bisnisMerchant.edc.endingBalance} />
-            <LivinRingkasanKPI data={appData.bisnisMerchant.edc.ringkasanKPI} />
-            <LivinTrenChart data={appData.bisnisMerchant.edc.trendAkuisisi} />
+            <EndingBalanceCard data={bisnisMerchant.edc.endingBalance} />
+            <LivinRingkasanKPI data={bisnisMerchant.edc.ringkasanKPI} />
+            <LivinTrenChart data={bisnisMerchant.edc.trendAkuisisi} />
 
             {/* Livin Merchant section */}
-            <EndingBalanceCard data={appData.bisnisMerchant.livinMerchant.endingBalance} />
-            <LivinRingkasanKPI data={appData.bisnisMerchant.livinMerchant.ringkasanKPI} />
-            <LivinTrenChart data={appData.bisnisMerchant.livinMerchant.trendAkuisisi} />
+            <EndingBalanceCard data={bisnisMerchant.livinMerchant.endingBalance} />
+            <LivinRingkasanKPI data={bisnisMerchant.livinMerchant.ringkasanKPI} />
+            <LivinTrenChart data={bisnisMerchant.livinMerchant.trendAkuisisi} />
 
             {/* Territory & CASA section */}
-            <MerchantPenguasaanCard data={appData.bisnisMerchant.penguasaan} />
-            <MerchantCakupanCard data={appData.bisnisMerchant.cakupan} />
-            <MerchantCASACard data={appData.bisnisMerchant.casa} />
+            <MerchantPenguasaanCard data={bisnisMerchant.penguasaan} />
+            <MerchantCakupanCard data={bisnisMerchant.cakupan} />
+            <MerchantCASACard data={bisnisMerchant.casa} />
           </>
         )}
 

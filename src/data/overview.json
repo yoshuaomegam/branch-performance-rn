@@ -1,0 +1,386 @@
+{
+  "pesanRCEO": {
+    "teks": "Tutup GAP tabungan bulan ini segera dengan mengakuisisi nasabah baru dan payroll dari turunan corp & commercial serta akuisisi dan winback merchant yang lepas dari tangan kita. Bulan ini, tabungan harus tercapai 100%.",
+    "penulis": "Desi Permatasan, RCEO"
+  },
+  "trenSkor": {
+    "bulan": [
+      "Des 25",
+      "Jan 26",
+      "Feb 26",
+      "Mar 26"
+    ],
+    "data": [
+      {
+        "id": "semua",
+        "nama": "Semua",
+        "nilai": [
+          82,
+          85,
+          80,
+          81
+        ],
+        "warna": "#0061AA"
+      },
+      {
+        "id": "bisnis",
+        "nama": "Bisnis",
+        "nilai": [
+          82,
+          85,
+          82,
+          82
+        ],
+        "warna": "#534AB7"
+      },
+      {
+        "id": "strategi",
+        "nama": "Strategi",
+        "nilai": [
+          75,
+          78,
+          74,
+          74
+        ],
+        "warna": "#D19000"
+      },
+      {
+        "id": "finansial",
+        "nama": "Finansial",
+        "nilai": [
+          70,
+          72,
+          68,
+          68
+        ],
+        "warna": "#D93535"
+      },
+      {
+        "id": "operasional",
+        "nama": "Operasional",
+        "nilai": [
+          88,
+          90,
+          86,
+          88
+        ],
+        "warna": "#06AA6F"
+      }
+    ]
+  },
+  "alertProyeksi": [
+    {
+      "id": "cif",
+      "tipe": "buruk",
+      "label": "Performa Rendah",
+      "judul": "Pace Akuisisi CIF di Bawah Target",
+      "deskripsi": "Saat ini 23 CIF dari target 30 bulan ini. Proyeksi akhir bulan hanya 27% vs target 360. Perlu +7 CIF minggu ini untuk stay on-track.",
+      "cta": "Fokus akuisisi +7 CIF minggu ini untuk kembali on-track."
+    },
+    {
+      "id": "gmm",
+      "tipe": "warning",
+      "label": "Hampir Tercapai",
+      "judul": "GMM Merchant di Bawah Target",
+      "deskripsi": "Current GMM Merchant 68% vs target 70%. Satu-satunya indikator strategi yang belum hijau.",
+      "cta": "Push ke customer yang dormant — target +2 merchant aktif minggu ini."
+    }
+  ],
+  "skorBisnis": {
+    "skor": 82,
+    "periode": "Mar 2026",
+    "items": [
+      {
+        "id": "dpk",
+        "nama": "DPK",
+        "skor": 90
+      },
+      {
+        "id": "kredit",
+        "nama": "Kredit",
+        "skor": 75
+      },
+      {
+        "id": "livin",
+        "nama": "Livin",
+        "skor": 80
+      },
+      {
+        "id": "kopra",
+        "nama": "Kopra",
+        "skor": 85
+      },
+      {
+        "id": "merchant",
+        "nama": "Merchant",
+        "skor": 90
+      }
+    ]
+  },
+  "skorStrategi": {
+    "skor": 74,
+    "periode": "Mar 2026",
+    "items": [
+      {
+        "id": "ekosistem",
+        "nama": "Ekosistem",
+        "skor": 76
+      },
+      {
+        "id": "gmm",
+        "nama": "GMM",
+        "skor": 72
+      }
+    ]
+  },
+  "skorFinansial": {
+    "skor": 68,
+    "periode": "Mar 2026",
+    "items": [
+      {
+        "id": "cof",
+        "nama": "CoF",
+        "skor": 71
+      },
+      {
+        "id": "yol",
+        "nama": "YoL",
+        "skor": 70
+      },
+      {
+        "id": "fbi",
+        "nama": "FBI",
+        "skor": 63
+      }
+    ]
+  },
+  "skorOperasional": {
+    "skor": 88,
+    "periode": "Mar 2026",
+    "items": [
+      {
+        "id": "layanan",
+        "nama": "Layanan Cabang",
+        "skor": 90
+      },
+      {
+        "id": "sla_kredit",
+        "nama": "SLA Kredit",
+        "skor": 88
+      },
+      {
+        "id": "sla_edc",
+        "nama": "SLA Pemasangan EDC",
+        "skor": 86
+      }
+    ]
+  },
+  "temuanAudit": {
+    "updatedAt": "06 Apr 2026",
+    "total": 8,
+    "open": 4,
+    "levelPct": 50,
+    "levelAt": 70,
+    "levelOver30": 1,
+    "distribusiDampak": [
+      {
+        "label": "High",
+        "jumlah": 2,
+        "pct": 25,
+        "warna": "#D93535"
+      },
+      {
+        "label": "Medium",
+        "jumlah": 3,
+        "pct": 37.5,
+        "warna": "#D19000"
+      },
+      {
+        "label": "Low",
+        "jumlah": 3,
+        "pct": 37.5,
+        "warna": "#06AA6F"
+      }
+    ],
+    "durasiOpen": [
+      {
+        "label": "<30 hari",
+        "jumlah": 3,
+        "warna": "#06AA6F"
+      },
+      {
+        "label": "10-90 hari",
+        "jumlah": 2,
+        "warna": "#D19000"
+      },
+      {
+        "label": ">90 hari",
+        "jumlah": 1,
+        "warna": "#D93535"
+      }
+    ]
+  },
+  "marketShare": {
+    "area": "Area Jakarta Utara",
+    "banks": [
+      {
+        "id": "bca",
+        "nama": "BCA",
+        "pct": 8.4,
+        "warna": "#0061AA"
+      },
+      {
+        "id": "bni",
+        "nama": "BNI",
+        "pct": 8.9,
+        "warna": "#F07800"
+      },
+      {
+        "id": "mandiri",
+        "nama": "Mandiri",
+        "pct": 8.9,
+        "warna": "#DCA911"
+      },
+      {
+        "id": "bri",
+        "nama": "BRI",
+        "pct": 8.6,
+        "warna": "#003087"
+      },
+      {
+        "id": "cimb",
+        "nama": "CIMB",
+        "pct": 6.4,
+        "warna": "#C00000"
+      }
+    ]
+  },
+  "ringkasanKPI": {
+    "kategoriList": [
+      "Bisnis",
+      "Strategi",
+      "Finansial",
+      "Operasional",
+      "Risiko"
+    ],
+    "periodList": [
+      "DoD",
+      "MoM",
+      "YtD",
+      "YoY"
+    ],
+    "data": {
+      "Strategi": {
+        "seksi": []
+      },
+      "Finansial": {
+        "seksi": []
+      },
+      "Operasional": {
+        "seksi": []
+      },
+      "Risiko": {
+        "seksi": []
+      },
+      "Bisnis": {
+        "seksi": [
+          {
+            "judul": "DPK",
+            "items": [
+              {
+                "metrik": "Estimasi DPK",
+                "ureg": "Rp480 M",
+                "target": "Rp400 M",
+                "capaian": "108%",
+                "mom": "+3.6%",
+                "statusCapaian": "good"
+              },
+              {
+                "metrik": "Akuisisi Kopra",
+                "ureg": "18",
+                "target": "10",
+                "capaian": "90%",
+                "mom": "+2",
+                "statusCapaian": "warning"
+              },
+              {
+                "metrik": "Akuisisi CIF",
+                "ureg": "23",
+                "target": "10",
+                "capaian": "170%",
+                "mom": "+2",
+                "statusCapaian": "good"
+              },
+              {
+                "metrik": "Starting Balance DPK",
+                "ureg": "Rp332 M",
+                "target": "Rp300 M",
+                "capaian": "120%",
+                "mom": "+2%",
+                "statusCapaian": "good"
+              }
+            ]
+          },
+          {
+            "judul": "Kredit",
+            "items": [
+              {
+                "metrik": "NPL",
+                "ureg": "1.4%",
+                "target": "-",
+                "capaian": "21%",
+                "mom": "+0.0pp",
+                "statusCapaian": "bad"
+              }
+            ]
+          },
+          {
+            "judul": "Transaksi",
+            "items": [
+              {
+                "metrik": "Akuisisi Livin",
+                "ureg": "100",
+                "target": "50",
+                "capaian": "-",
+                "mom": "-",
+                "statusCapaian": "good"
+              },
+              {
+                "metrik": "Akuisisi Kopra",
+                "ureg": "18",
+                "target": "10",
+                "capaian": "90%",
+                "mom": "-",
+                "statusCapaian": "warning"
+              },
+              {
+                "metrik": "Akuisisi LM",
+                "ureg": "26",
+                "target": "20",
+                "capaian": "-106%",
+                "mom": "-",
+                "statusCapaian": "bad"
+              },
+              {
+                "metrik": "Akuisisi EDC",
+                "ureg": "12",
+                "target": "20",
+                "capaian": "-100%",
+                "mom": "-",
+                "statusCapaian": "bad"
+              },
+              {
+                "metrik": "% Trx On Us",
+                "ureg": "64%",
+                "target": "80%",
+                "capaian": "-20%",
+                "mom": "-",
+                "statusCapaian": "bad"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
