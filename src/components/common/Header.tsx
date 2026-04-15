@@ -90,10 +90,7 @@ export function Header({
 
       {/* Tabs */}
       {tabs && tabs.length > 0 && (
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.tabsRow}>
+        <View style={styles.tabsRow}>
           {tabs.map(tab => {
             const isActive = activeTab === tab;
             return (
@@ -108,7 +105,7 @@ export function Header({
               </TouchableOpacity>
             );
           })}
-        </ScrollView>
+        </View>
       )}
     </View>
   );
@@ -222,11 +219,11 @@ const styles = StyleSheet.create({
   },
   tabsRow: {
     flexDirection: 'row',
-    paddingHorizontal: Spacing.xs,
     backgroundColor: Colors.surfaceLight,
   },
   tabItem: {
-    paddingHorizontal: Spacing.md,
+    flex: 1,
+    alignItems: 'center',
     paddingVertical: Spacing.sm + 2,
     borderBottomWidth: 2,
     borderBottomColor: 'transparent',

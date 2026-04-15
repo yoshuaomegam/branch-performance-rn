@@ -454,6 +454,77 @@ export interface BisnisLivin {
   frekuensi: LivinFrekuensiData;
 }
 
+// Bisnis Merchant types
+export interface MerchantPenguasaanLegend {
+  label: string;
+  warna: string;
+}
+
+export interface MerchantPenguasaanMarker {
+  lat: number;
+  lng: number;
+  tipe: 'kopra' | 'edc' | 'lm' | 'belum';
+}
+
+export interface MerchantPenguasaanData {
+  legend: MerchantPenguasaanLegend[];
+  markers: MerchantPenguasaanMarker[];
+}
+
+export interface MerchantCakupanRow {
+  segmen: string;
+  edc: number;
+  lm: number;
+  kopra: number;
+  belum: number;
+}
+
+export interface MerchantCakupanData {
+  rows: MerchantCakupanRow[];
+}
+
+export interface MerchantCASASegment {
+  label: string;
+  pct: number;
+  warna: string;
+}
+
+export interface MerchantCASARow {
+  produk: string;
+  balance: string;
+  target: string;
+  capaian: string;
+  capaianStatus: MetricStatus;
+  growth: string;
+  growthUp: boolean;
+}
+
+export interface MerchantCASAData {
+  segments: MerchantCASASegment[];
+  rows: MerchantCASARow[];
+  infoBox: string;
+}
+
+export interface BisnisEDC {
+  endingBalance: DPKEndingBalance;
+  ringkasanKPI: LivinRingkasanKPIData;
+  trendAkuisisi: TrenPencairanData;
+}
+
+export interface BisnisLivinMerchant {
+  endingBalance: DPKEndingBalance;
+  ringkasanKPI: LivinRingkasanKPIData;
+  trendAkuisisi: TrenPencairanData;
+}
+
+export interface BisnisMerchant {
+  edc: BisnisEDC;
+  livinMerchant: BisnisLivinMerchant;
+  penguasaan: MerchantPenguasaanData;
+  cakupan: MerchantCakupanData;
+  casa: MerchantCASAData;
+}
+
 export interface DashboardData {
   cabang: CabangInfo;
   periode: string;

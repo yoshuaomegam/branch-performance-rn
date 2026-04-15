@@ -30,6 +30,9 @@ import {TrenPencairanChart} from '../../components/bisnis/TrenPencairanChart';
 import {KreditProdukCard} from '../../components/bisnis/KreditProdukCard';
 import {KopraKeaktifanCard} from '../../components/bisnis/KopraKeaktifanCard';
 import {KopraPipelineCard} from '../../components/bisnis/KopraPipelineCard';
+import {MerchantPenguasaanCard} from '../../components/bisnis/MerchantPenguasaanCard';
+import {MerchantCakupanCard} from '../../components/bisnis/MerchantCakupanCard';
+import {MerchantCASACard} from '../../components/bisnis/MerchantCASACard';
 import {LivinRingkasanKPI} from '../../components/bisnis/LivinRingkasanKPI';
 import {LivinChannelCard} from '../../components/bisnis/LivinChannelCard';
 import {LivinTrenChart} from '../../components/bisnis/LivinTrenChart';
@@ -70,6 +73,7 @@ export function DashboardKinerjaCabangScreen() {
   }, []);
 
   const isBisnis = selectedTab === 'Bisnis';
+  const isOverview = selectedTab === 'Overview';
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -92,10 +96,7 @@ export function DashboardKinerjaCabangScreen() {
       {/* Bisnis sub-menu (sticky below header) */}
       {isBisnis && (
         <View style={styles.subMenuContainer}>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.subMenuRow}>
+          <View style={styles.subMenuRow}>
             {BISNIS_SUB_MENUS.map(menu => {
               const isActive = activeSubMenu === menu;
               return (
@@ -110,7 +111,7 @@ export function DashboardKinerjaCabangScreen() {
                 </TouchableOpacity>
               );
             })}
-          </ScrollView>
+          </View>
         </View>
       )}
 
@@ -129,7 +130,7 @@ export function DashboardKinerjaCabangScreen() {
         }>
 
         {/* ── Overview tab ── */}
-        {!isBisnis && (
+        {isOverview && (
           <>
             <PesanRCEO pesan={pesanRCEO} />
 
@@ -200,6 +201,26 @@ export function DashboardKinerjaCabangScreen() {
           </>
         )}
 
+        {/* ── Merchant tab ── */}
+        {isBisnis && activeSubMenu === 'Merchant' && (
+          <>
+            {/* EDC section */}
+            <EndingBalanceCard data={appData.bisnisMerchant.edc.endingBalance} />
+            <LivinRingkasanKPI data={appData.bisnisMerchant.edc.ringkasanKPI} />
+            <LivinTrenChart data={appData.bisnisMerchant.edc.trendAkuisisi} />
+
+            {/* Livin Merchant section */}
+            <EndingBalanceCard data={appData.bisnisMerchant.livinMerchant.endingBalance} />
+            <LivinRingkasanKPI data={appData.bisnisMerchant.livinMerchant.ringkasanKPI} />
+            <LivinTrenChart data={appData.bisnisMerchant.livinMerchant.trendAkuisisi} />
+
+            {/* Territory & CASA section */}
+            <MerchantPenguasaanCard data={appData.bisnisMerchant.penguasaan} />
+            <MerchantCakupanCard data={appData.bisnisMerchant.cakupan} />
+            <MerchantCASACard data={appData.bisnisMerchant.casa} />
+          </>
+        )}
+
         <View style={styles.bottomPad} />
       </ScrollView>
     </SafeAreaView>
@@ -216,10 +237,10 @@ const styles = StyleSheet.create({
   },
   subMenuRow: {
     flexDirection: 'row',
-    paddingHorizontal: Spacing.xs,
   },
   subMenuItem: {
-    paddingHorizontal: Spacing.md,
+    flex: 1,
+    alignItems: 'center',
     paddingVertical: Spacing.sm + 2,
     borderBottomWidth: 2,
     borderBottomColor: 'transparent',

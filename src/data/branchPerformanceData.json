@@ -716,5 +716,183 @@
         ]
       }
     }
+  },
+  "bisnisMerchant": {
+    "edc": {
+      "endingBalance": {
+        "label": "EDC",
+        "tanggal": "31 Mar 2026",
+        "nilai": "28 Mesin",
+        "target": "≥ 35 Mesin",
+        "keterangan": "-7 Mesin (25%). Masih di Bawah Target",
+        "keteranganUp": false,
+        "perbandingan": [
+          { "tanggal": "28 Feb 2026", "nilai": "26 Mesin", "growth": "7,7% MoM",  "growthUp": true },
+          { "tanggal": "31 Des 2025", "nilai": "22 Mesin", "growth": "27,3% YtD", "growthUp": true },
+          { "tanggal": "31 Mar 2025", "nilai": "21 Mesin", "growth": "33,3% YoY", "growthUp": true }
+        ]
+      },
+      "ringkasanKPI": {
+        "stats": [
+          { "label": "EDC Optimal",       "nilai": "12",      "keterangan": "43% dari Total Terpasang", "keteranganStatus": "warning" },
+          { "label": "SV Total",           "nilai": "Rp1,3M",  "keterangan": "↑11% MoM",                "keteranganStatus": "good"    },
+          { "label": "% On Us",            "nilai": "64%",     "keterangan": "↑1 Poin % MoM",           "keteranganStatus": "good"    },
+          { "label": "CASA Settlement",    "nilai": "Rp280M",  "keterangan": "Dari Rek. Settlement",    "keteranganStatus": "neutral" },
+          { "label": "Akuisisi EDC",       "nilai": "12",      "keterangan": "↑20% • Target 10",        "keteranganStatus": "good"    },
+          { "label": "SV Per Merchant",    "nilai": "Rp108jt", "keterangan": "Rata-Rata per Mesin",     "keteranganStatus": "neutral" }
+        ]
+      },
+      "trendAkuisisi": {
+        "chips": ["MoM", "YtD", "YoY"],
+        "allBars": [
+          { "date": "2026-03-16", "label": "16 Mar", "nilai": 1 },
+          { "date": "2026-03-17", "label": "17 Mar", "nilai": 0 },
+          { "date": "2026-03-18", "label": "18 Mar", "nilai": 1 },
+          { "date": "2026-03-19", "label": "19 Mar", "nilai": 2 },
+          { "date": "2026-03-20", "label": "20 Mar", "nilai": 1 },
+          { "date": "2026-03-21", "label": "21 Mar", "nilai": 0 },
+          { "date": "2026-03-22", "label": "22 Mar", "nilai": 1 },
+          { "date": "2026-03-23", "label": "23 Mar", "nilai": 2 },
+          { "date": "2026-03-24", "label": "24 Mar", "nilai": 1 },
+          { "date": "2026-03-25", "label": "25 Mar", "nilai": 0 },
+          { "date": "2026-03-26", "label": "26 Mar", "nilai": 1 },
+          { "date": "2026-03-27", "label": "27 Mar", "nilai": 2 },
+          { "date": "2026-03-28", "label": "28 Mar", "nilai": 1 },
+          { "date": "2026-03-29", "label": "29 Mar", "nilai": 0 },
+          { "date": "2026-03-30", "label": "30 Mar", "nilai": 2 },
+          { "date": "2026-03-31", "label": "31 Mar", "nilai": 3 },
+          { "date": "2026-04-01", "label": "1 Apr",  "nilai": 2 },
+          { "date": "2026-04-02", "label": "2 Apr",  "nilai": 1 },
+          { "date": "2026-04-03", "label": "3 Apr",  "nilai": 2 },
+          { "date": "2026-04-04", "label": "4 Apr",  "nilai": 1 },
+          { "date": "2026-04-05", "label": "5 Apr",  "nilai": 0 },
+          { "date": "2026-04-06", "label": "6 Apr",  "nilai": 1 },
+          { "date": "2026-04-07", "label": "7 Apr",  "nilai": 2 },
+          { "date": "2026-04-08", "label": "8 Apr",  "nilai": 1 },
+          { "date": "2026-04-09", "label": "9 Apr",  "nilai": 0 },
+          { "date": "2026-04-10", "label": "10 Apr", "nilai": 2 },
+          { "date": "2026-04-11", "label": "11 Apr", "nilai": 1 },
+          { "date": "2026-04-12", "label": "12 Apr", "nilai": 0 },
+          { "date": "2026-04-13", "label": "13 Apr", "nilai": 1 },
+          { "date": "2026-04-14", "label": "14 Apr", "nilai": 2 },
+          { "date": "2026-04-15", "label": "15 Apr", "nilai": 1 }
+        ],
+        "defaultRange": { "start": "2026-03-30", "end": "2026-04-03" }
+      }
+    },
+    "livinMerchant": {
+      "endingBalance": {
+        "label": "Livin Merchant",
+        "tanggal": "",
+        "nilai": "18 UREG",
+        "target": "24 UREG",
+        "keterangan": "-6 UREG (25%). Masih di Bawah Target",
+        "keteranganUp": false,
+        "perbandingan": [
+          { "tanggal": "", "nilai": "15 UREG", "growth": "20% MoM",   "growthUp": true },
+          { "tanggal": "", "nilai": "11 UREG", "growth": "63,6% YtD", "growthUp": true },
+          { "tanggal": "", "nilai": "12 UREG", "growth": "50% YoY",   "growthUp": true }
+        ]
+      },
+      "ringkasanKPI": {
+        "stats": [
+          { "label": "USAK",          "nilai": "12",      "keterangan": "78% dari UREG",          "keteranganStatus": "warning" },
+          { "label": "SV Total",      "nilai": "Rp0,6M",  "keterangan": "↑15% MoM",               "keteranganStatus": "good"    },
+          { "label": "Frekuensi",     "nilai": "6,2x",    "keterangan": "Merchant/Bulan",          "keteranganStatus": "neutral" },
+          { "label": "Akuisisi",      "nilai": "18",      "keterangan": "75% dari Target 24",      "keteranganStatus": "warning" },
+          { "label": "SV Rata-Rata",  "nilai": "12",      "keterangan": "Per Merchant",            "keteranganStatus": "neutral" },
+          { "label": "% On Us",       "nilai": "58%",     "keterangan": "↓2 Poin % dari Target 60%","keteranganStatus": "warning" }
+        ]
+      },
+      "trendAkuisisi": {
+        "chips": ["MoM", "YtD", "YoY"],
+        "allBars": [
+          { "date": "2026-03-16", "label": "16 Mar", "nilai": 0 },
+          { "date": "2026-03-17", "label": "17 Mar", "nilai": 1 },
+          { "date": "2026-03-18", "label": "18 Mar", "nilai": 1 },
+          { "date": "2026-03-19", "label": "19 Mar", "nilai": 0 },
+          { "date": "2026-03-20", "label": "20 Mar", "nilai": 2 },
+          { "date": "2026-03-21", "label": "21 Mar", "nilai": 1 },
+          { "date": "2026-03-22", "label": "22 Mar", "nilai": 0 },
+          { "date": "2026-03-23", "label": "23 Mar", "nilai": 1 },
+          { "date": "2026-03-24", "label": "24 Mar", "nilai": 2 },
+          { "date": "2026-03-25", "label": "25 Mar", "nilai": 0 },
+          { "date": "2026-03-26", "label": "26 Mar", "nilai": 1 },
+          { "date": "2026-03-27", "label": "27 Mar", "nilai": 1 },
+          { "date": "2026-03-28", "label": "28 Mar", "nilai": 0 },
+          { "date": "2026-03-29", "label": "29 Mar", "nilai": 2 },
+          { "date": "2026-03-30", "label": "30 Mar", "nilai": 1 },
+          { "date": "2026-03-31", "label": "31 Mar", "nilai": 2 },
+          { "date": "2026-04-01", "label": "1 Apr",  "nilai": 3 },
+          { "date": "2026-04-02", "label": "2 Apr",  "nilai": 1 },
+          { "date": "2026-04-03", "label": "3 Apr",  "nilai": 2 },
+          { "date": "2026-04-04", "label": "4 Apr",  "nilai": 1 },
+          { "date": "2026-04-05", "label": "5 Apr",  "nilai": 0 },
+          { "date": "2026-04-06", "label": "6 Apr",  "nilai": 2 },
+          { "date": "2026-04-07", "label": "7 Apr",  "nilai": 1 },
+          { "date": "2026-04-08", "label": "8 Apr",  "nilai": 0 },
+          { "date": "2026-04-09", "label": "9 Apr",  "nilai": 1 },
+          { "date": "2026-04-10", "label": "10 Apr", "nilai": 2 },
+          { "date": "2026-04-11", "label": "11 Apr", "nilai": 1 },
+          { "date": "2026-04-12", "label": "12 Apr", "nilai": 0 },
+          { "date": "2026-04-13", "label": "13 Apr", "nilai": 1 },
+          { "date": "2026-04-14", "label": "14 Apr", "nilai": 2 },
+          { "date": "2026-04-15", "label": "15 Apr", "nilai": 1 }
+        ],
+        "defaultRange": { "start": "2026-03-30", "end": "2026-04-03" }
+      }
+    },
+    "penguasaan": {
+      "legend": [
+        { "label": "Kopra",  "warna": "#074DB6" },
+        { "label": "EDC",    "warna": "#6FAEFC" },
+        { "label": "LM",     "warna": "#A2CFFF" },
+        { "label": "Belum",  "warna": "#6A727D" }
+      ],
+      "markers": [
+        { "lat": -6.1210, "lng": 106.7880, "tipe": "kopra"  },
+        { "lat": -6.1195, "lng": 106.7920, "tipe": "edc"    },
+        { "lat": -6.1230, "lng": 106.7960, "tipe": "lm"     },
+        { "lat": -6.1215, "lng": 106.7945, "tipe": "belum"  },
+        { "lat": -6.1250, "lng": 106.7870, "tipe": "edc"    },
+        { "lat": -6.1260, "lng": 106.7910, "tipe": "kopra"  },
+        { "lat": -6.1270, "lng": 106.7890, "tipe": "kopra"  },
+        { "lat": -6.1285, "lng": 106.7940, "tipe": "belum"  },
+        { "lat": -6.1245, "lng": 106.7975, "tipe": "edc"    },
+        { "lat": -6.1200, "lng": 106.7955, "tipe": "lm"     },
+        { "lat": -6.1300, "lng": 106.7865, "tipe": "belum"  },
+        { "lat": -6.1310, "lng": 106.7905, "tipe": "lm"     },
+        { "lat": -6.1290, "lng": 106.7925, "tipe": "edc"    },
+        { "lat": -6.1320, "lng": 106.7950, "tipe": "kopra"  },
+        { "lat": -6.1275, "lng": 106.7970, "tipe": "belum"  },
+        { "lat": -6.1330, "lng": 106.7935, "tipe": "kopra"  },
+        { "lat": -6.1240, "lng": 106.7900, "tipe": "edc"    },
+        { "lat": -6.1350, "lng": 106.7890, "tipe": "belum"  },
+        { "lat": -6.1340, "lng": 106.7960, "tipe": "lm"     },
+        { "lat": -6.1225, "lng": 106.7855, "tipe": "edc"    },
+        { "lat": -6.1180, "lng": 106.7895, "tipe": "belum"  }
+      ]
+    },
+    "cakupan": {
+      "rows": [
+        { "segmen": "< 1 km",  "edc": 4, "lm": 2, "kopra": 1, "belum": 2 },
+        { "segmen": "1–2 km", "edc": 2, "lm": 1, "kopra": 1, "belum": 4 }
+      ]
+    },
+    "casa": {
+      "segments": [
+        { "label": "Kopra", "pct": 42, "warna": "#074DB6" },
+        { "label": "Livin",  "pct": 30, "warna": "#307FE2" },
+        { "label": "EDC",   "pct": 18, "warna": "#6FAEFC" },
+        { "label": "LM",    "pct": 10, "warna": "#A2CFFF" }
+      ],
+      "rows": [
+        { "produk": "Kopra", "balance": "Rp240M", "target": "Rp100M", "capaian": "112%", "capaianStatus": "good",    "growth": "↑14,3%", "growthUp": true  },
+        { "produk": "Livin", "balance": "Rp172M", "target": "Rp80M",  "capaian": "97%",  "capaianStatus": "good",    "growth": "↓1,1%",  "growthUp": false },
+        { "produk": "EDC",   "balance": "Rp103M", "target": "Rp70M",  "capaian": "97%",  "capaianStatus": "good",    "growth": "↑8,2%",  "growthUp": true  },
+        { "produk": "LM",    "balance": "Rp57M",  "target": "Rp60M",  "capaian": "96%",  "capaianStatus": "warning", "growth": "↓3,2%",  "growthUp": false }
+      ],
+      "infoBox": "Settlement EDC & LM ke rekening Kopra/Livin meningkatkan CASA. Dorong merchant untuk migrasi settlement ke produk digital."
+    }
   }
 }

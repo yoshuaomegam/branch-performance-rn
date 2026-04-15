@@ -26,8 +26,12 @@ export function EndingBalanceCard({data}: Props) {
         <View style={styles.heroContent}>
           <View style={styles.heroTitleRow}>
             <Text style={styles.heroLabel}>{data.label}</Text>
-            <Text style={styles.heroDot}> • </Text>
-            <Text style={styles.heroTanggal}>{data.tanggal}</Text>
+            {!!data.tanggal && (
+              <>
+                <Text style={styles.heroDot}> • </Text>
+                <Text style={styles.heroTanggal}>{data.tanggal}</Text>
+              </>
+            )}
           </View>
           <Text style={styles.heroNilai}>{data.nilai}</Text>
           <View style={styles.heroSubRow}>
