@@ -186,10 +186,12 @@
       ]
     },
     "trendEndbal": {
+      "subtitle": "Endbal harian (Rp M) pattern uplift akhir bulan.",
       "bulan": ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
       "series": [
-        { "label": "2024", "warna": "#D19000", "nilai": [218, 225, 232, 238, 242, 246, 250, 255, 260, 265, 270, 276] },
-        { "label": "2026", "warna": "#0061AA", "nilai": [280, 290, 312, null, null, null, null, null, null, null, null, null] }
+        { "label": "2024", "warna": "#074db6", "nilai": [205, 208, 212, 215, 218, 222, 226, 230, 234, 238, 241, 245] },
+        { "label": "2025", "warna": "#307fe2", "nilai": [258, 262, 268, 271, 275, 280, 285, 290, 297, 305, 312, 319] },
+        { "label": "2026", "warna": "#6faefc", "nilai": [330, 358, 396, null, null, null, null, null, null, null, null, null] }
       ],
       "metrik": [
         { "nama": "Average Balance", "y2024": "Rp218 M", "y2025": "Rp276,6 M", "y2026": "Rp324,4 M" },
@@ -199,6 +201,216 @@
         { "nama": "Max", "y2024": "-", "y2025": "-", "y2026": "Rp440,1 M" }
       ],
       "catatan": "Pattern uplift akhir bulan makin besar di 2026 — % Avg/Endbal naik dari 91% (2024) → 67% (2025). Growing average balance dengan akuisisi payroll awal bulan."
+    }
+  },
+  "bisnisKredit": {
+    "endingBalance": {
+      "label": "Bade Kredit Retail",
+      "tanggal": "31 Mar 2026",
+      "nilai": "Rp420 M",
+      "target": "≥ Rp400 M",
+      "keterangan": "+Rp20 M (5,0%). Melampaui Target",
+      "keteranganUp": true,
+      "perbandingan": [
+        { "tanggal": "28 Feb 2026", "nilai": "Rp398 M", "growth": "+8.1% MoM", "growthUp": true },
+        { "tanggal": "31 Des 2025", "nilai": "Rp370 M", "growth": "+13.5% YtD", "growthUp": true },
+        { "tanggal": "31 Mar 2025", "nilai": "Rp388 M", "growth": "+11.5% YoY", "growthUp": true }
+      ]
+    },
+    "ringkasanKPI": {
+      "stats": [
+        { "label": "NPL", "nilai": "1.4%", "keterangan": "↑0.1pp • Target ≤2%", "keteranganStatus": "good" },
+        { "label": "KOL 2", "nilai": "2.1%", "keterangan": "↑0.2pp • Target ≤2%", "keteranganStatus": "warning" },
+        { "label": "Jumlah Rekening", "nilai": "360", "keterangan": "↑12 MoM", "keteranganStatus": "good" },
+        { "label": "Jumlah CIF", "nilai": "298", "keterangan": "↑8 MoM", "keteranganStatus": "good" }
+      ]
+    },
+    "booking": {
+      "chips": ["Semua", "KSM", "KPR", "KKB", "KUM", "KUR", "CC"],
+      "stats": [
+        { "label": "Jumlah Booking", "nilai": "Rp84 M", "target": "Target ≥ Rp80 M", "keteranganStatus": "good" },
+        { "label": "Jumlah CIF", "nilai": "41", "keteranganStatus": "neutral" },
+        { "label": "Jumlah Rekening", "nilai": "47", "keteranganStatus": "neutral" }
+      ]
+    },
+    "trendPencairan": {
+      "chips": ["Semua", "KSM", "KPR", "KKB", "KUM", "KUR", "CC"],
+      "defaultRange": { "start": "2026-03-30", "end": "2026-04-03" },
+      "allBars": [
+        { "date": "2026-03-02", "label": "2 Mar", "nilai": 8 },
+        { "date": "2026-03-03", "label": "3 Mar", "nilai": 12 },
+        { "date": "2026-03-04", "label": "4 Mar", "nilai": 15 },
+        { "date": "2026-03-05", "label": "5 Mar", "nilai": 9 },
+        { "date": "2026-03-06", "label": "6 Mar", "nilai": 7 },
+        { "date": "2026-03-09", "label": "9 Mar", "nilai": 13 },
+        { "date": "2026-03-10", "label": "10 Mar", "nilai": 16 },
+        { "date": "2026-03-11", "label": "11 Mar", "nilai": 10 },
+        { "date": "2026-03-12", "label": "12 Mar", "nilai": 14 },
+        { "date": "2026-03-13", "label": "13 Mar", "nilai": 8 },
+        { "date": "2026-03-16", "label": "16 Mar", "nilai": 11 },
+        { "date": "2026-03-17", "label": "17 Mar", "nilai": 19 },
+        { "date": "2026-03-18", "label": "18 Mar", "nilai": 13 },
+        { "date": "2026-03-19", "label": "19 Mar", "nilai": 15 },
+        { "date": "2026-03-20", "label": "20 Mar", "nilai": 9 },
+        { "date": "2026-03-23", "label": "23 Mar", "nilai": 14 },
+        { "date": "2026-03-24", "label": "24 Mar", "nilai": 18 },
+        { "date": "2026-03-25", "label": "25 Mar", "nilai": 12 },
+        { "date": "2026-03-26", "label": "26 Mar", "nilai": 16 },
+        { "date": "2026-03-27", "label": "27 Mar", "nilai": 10 },
+        { "date": "2026-03-30", "label": "30 Mar", "nilai": 14 },
+        { "date": "2026-03-31", "label": "31 Mar", "nilai": 17 },
+        { "date": "2026-04-01", "label": "1 Apr", "nilai": 8 },
+        { "date": "2026-04-02", "label": "2 Apr", "nilai": 11 },
+        { "date": "2026-04-03", "label": "3 Apr", "nilai": 6 },
+        { "date": "2026-04-06", "label": "6 Apr", "nilai": 10 },
+        { "date": "2026-04-07", "label": "7 Apr", "nilai": 14 },
+        { "date": "2026-04-08", "label": "8 Apr", "nilai": 12 },
+        { "date": "2026-04-09", "label": "9 Apr", "nilai": 9 },
+        { "date": "2026-04-10", "label": "10 Apr", "nilai": 13 },
+        { "date": "2026-04-13", "label": "13 Apr", "nilai": 15 },
+        { "date": "2026-04-14", "label": "14 Apr", "nilai": 11 },
+        { "date": "2026-04-15", "label": "15 Apr", "nilai": 8 }
+      ]
+    },
+    "produk": {
+      "chips": ["DoD", "MoM", "YoY", "YtD"],
+      "produkList": [
+        {
+          "label": "Semua", "nilai": "Rp420 M",
+          "growth": { "DoD": {"pct":"0.5%","up":true}, "MoM": {"pct":"5.3%","up":true}, "YoY": {"pct":"8.2%","up":true}, "YtD": {"pct":"13.5%","up":true} }
+        },
+        {
+          "label": "KSM", "nilai": "Rp59 M", "npl": "1.2%",
+          "growth": { "DoD": {"pct":"0.2%","up":true}, "MoM": {"pct":"4.1%","up":true}, "YoY": {"pct":"6.8%","up":true}, "YtD": {"pct":"10.2%","up":true} }
+        },
+        {
+          "label": "KPR", "nilai": "Rp97 M", "npl": "0.8%",
+          "growth": { "DoD": {"pct":"0.4%","up":true}, "MoM": {"pct":"3.8%","up":true}, "YoY": {"pct":"9.5%","up":true}, "YtD": {"pct":"12.4%","up":true} }
+        },
+        {
+          "label": "KKB", "nilai": "Rp42 M", "npl": "1.9%",
+          "growth": { "DoD": {"pct":"0.1%","up":false}, "MoM": {"pct":"2.3%","up":false}, "YoY": {"pct":"1.2%","up":true}, "YtD": {"pct":"1.8%","up":false} }
+        },
+        {
+          "label": "KUM", "nilai": "Rp113 M", "npl": "1.0%",
+          "growth": { "DoD": {"pct":"0.8%","up":true}, "MoM": {"pct":"7.2%","up":true}, "YoY": {"pct":"11.3%","up":true}, "YtD": {"pct":"15.8%","up":true} }
+        },
+        {
+          "label": "KUR", "nilai": "Rp80 M", "npl": "0.9%",
+          "growth": { "DoD": {"pct":"0.3%","up":true}, "MoM": {"pct":"5.6%","up":true}, "YoY": {"pct":"8.9%","up":true}, "YtD": {"pct":"14.1%","up":true} }
+        },
+        {
+          "label": "Kartu Kredit", "nilai": "Rp120 M", "npl": "0.5%",
+          "growth": { "DoD": {"pct":"0.1%","up":true}, "MoM": {"pct":"2.8%","up":true}, "YoY": {"pct":"4.7%","up":true}, "YtD": {"pct":"7.3%","up":true} }
+        }
+      ],
+      "shiftingByProduk": {
+        "Semua": {
+          "kolList": ["Kol 1","Kol 2","Kol 3","Kol 4","Kol 5"],
+          "rows": [
+            { "fromKol": "Kol 1", "toValues": [null, 12, 3, 1, 0] },
+            { "fromKol": "Kol 2", "toValues": [8, null, 5, 2, 1] },
+            { "fromKol": "Kol 3", "toValues": [2, 4, null, 3, 1] },
+            { "fromKol": "Kol 4", "toValues": [1, 2, 4, null, 2] },
+            { "fromKol": "Kol 5", "toValues": [0, 1, 1, 3, null] }
+          ],
+          "summary": [
+            { "label": "Downgrade", "warna": "#D93535", "rekening": "4.195 Rek", "nilai": "Rp133,8 M" },
+            { "label": "Stay",      "warna": "#06AA6F", "rekening": "157.908 Rek","nilai": "Rp5.028,7 M" },
+            { "label": "Upgrade",   "warna": "#307fe2", "rekening": "1.111 Rek",  "nilai": "Rp26 M" }
+          ]
+        },
+        "KSM": {
+          "kolList": ["Kol 1","Kol 2","Kol 3","Kol 4","Kol 5"],
+          "rows": [
+            { "fromKol": "Kol 1", "toValues": [null, 8, 1, 0, 0] },
+            { "fromKol": "Kol 2", "toValues": [5, null, 2, 1, 0] },
+            { "fromKol": "Kol 3", "toValues": [1, 2, null, 1, 0] },
+            { "fromKol": "Kol 4", "toValues": [0, 1, 1, null, 1] },
+            { "fromKol": "Kol 5", "toValues": [0, 0, 0, 1, null] }
+          ],
+          "summary": [
+            { "label": "Downgrade", "warna": "#D93535", "rekening": "312 Rek",   "nilai": "Rp8,2 M" },
+            { "label": "Stay",      "warna": "#06AA6F", "rekening": "4.820 Rek", "nilai": "Rp59,0 M" },
+            { "label": "Upgrade",   "warna": "#307fe2", "rekening": "98 Rek",    "nilai": "Rp2,1 M" }
+          ]
+        },
+        "KPR": {
+          "kolList": ["Kol 1","Kol 2","Kol 3","Kol 4","Kol 5"],
+          "rows": [
+            { "fromKol": "Kol 1", "toValues": [null, 4, 1, 0, 0] },
+            { "fromKol": "Kol 2", "toValues": [3, null, 2, 0, 0] },
+            { "fromKol": "Kol 3", "toValues": [1, 1, null, 1, 0] },
+            { "fromKol": "Kol 4", "toValues": [0, 0, 1, null, 1] },
+            { "fromKol": "Kol 5", "toValues": [0, 0, 0, 1, null] }
+          ],
+          "summary": [
+            { "label": "Downgrade", "warna": "#D93535", "rekening": "156 Rek",   "nilai": "Rp18,4 M" },
+            { "label": "Stay",      "warna": "#06AA6F", "rekening": "8.240 Rek", "nilai": "Rp97,0 M" },
+            { "label": "Upgrade",   "warna": "#307fe2", "rekening": "67 Rek",    "nilai": "Rp6,3 M" }
+          ]
+        },
+        "KKB": {
+          "kolList": ["Kol 1","Kol 2","Kol 3","Kol 4","Kol 5"],
+          "rows": [
+            { "fromKol": "Kol 1", "toValues": [null, 7, 1, 0, 0] },
+            { "fromKol": "Kol 2", "toValues": [4, null, 3, 1, 1] },
+            { "fromKol": "Kol 3", "toValues": [1, 2, null, 2, 0] },
+            { "fromKol": "Kol 4", "toValues": [0, 1, 1, null, 1] },
+            { "fromKol": "Kol 5", "toValues": [0, 0, 1, 2, null] }
+          ],
+          "summary": [
+            { "label": "Downgrade", "warna": "#D93535", "rekening": "198 Rek",   "nilai": "Rp5,1 M" },
+            { "label": "Stay",      "warna": "#06AA6F", "rekening": "3.120 Rek", "nilai": "Rp42,0 M" },
+            { "label": "Upgrade",   "warna": "#307fe2", "rekening": "44 Rek",    "nilai": "Rp1,8 M" }
+          ]
+        },
+        "KUM": {
+          "kolList": ["Kol 1","Kol 2","Kol 3","Kol 4","Kol 5"],
+          "rows": [
+            { "fromKol": "Kol 1", "toValues": [null, 15, 4, 1, 0] },
+            { "fromKol": "Kol 2", "toValues": [10, null, 6, 2, 1] },
+            { "fromKol": "Kol 3", "toValues": [2, 3, null, 3, 1] },
+            { "fromKol": "Kol 4", "toValues": [1, 2, 3, null, 2] },
+            { "fromKol": "Kol 5", "toValues": [0, 1, 1, 2, null] }
+          ],
+          "summary": [
+            { "label": "Downgrade", "warna": "#D93535", "rekening": "425 Rek",    "nilai": "Rp12,8 M" },
+            { "label": "Stay",      "warna": "#06AA6F", "rekening": "12.300 Rek", "nilai": "Rp113,0 M" },
+            { "label": "Upgrade",   "warna": "#307fe2", "rekening": "120 Rek",    "nilai": "Rp4,2 M" }
+          ]
+        },
+        "KUR": {
+          "kolList": ["Kol 1","Kol 2","Kol 3","Kol 4","Kol 5"],
+          "rows": [
+            { "fromKol": "Kol 1", "toValues": [null, 9, 2, 1, 0] },
+            { "fromKol": "Kol 2", "toValues": [6, null, 4, 1, 0] },
+            { "fromKol": "Kol 3", "toValues": [2, 2, null, 2, 0] },
+            { "fromKol": "Kol 4", "toValues": [0, 1, 2, null, 1] },
+            { "fromKol": "Kol 5", "toValues": [0, 0, 0, 1, null] }
+          ],
+          "summary": [
+            { "label": "Downgrade", "warna": "#D93535", "rekening": "280 Rek",   "nilai": "Rp7,6 M" },
+            { "label": "Stay",      "warna": "#06AA6F", "rekening": "9.850 Rek", "nilai": "Rp80,0 M" },
+            { "label": "Upgrade",   "warna": "#307fe2", "rekening": "89 Rek",    "nilai": "Rp3,1 M" }
+          ]
+        },
+        "Kartu Kredit": {
+          "kolList": ["Kol 1","Kol 2","Kol 3","Kol 4","Kol 5"],
+          "rows": [
+            { "fromKol": "Kol 1", "toValues": [null, 18, 5, 2, 1] },
+            { "fromKol": "Kol 2", "toValues": [14, null, 8, 3, 2] },
+            { "fromKol": "Kol 3", "toValues": [4, 6, null, 5, 2] },
+            { "fromKol": "Kol 4", "toValues": [2, 3, 6, null, 4] },
+            { "fromKol": "Kol 5", "toValues": [1, 2, 2, 5, null] }
+          ],
+          "summary": [
+            { "label": "Downgrade", "warna": "#D93535", "rekening": "2.824 Rek",   "nilai": "Rp82,7 M" },
+            { "label": "Stay",      "warna": "#06AA6F", "rekening": "120.578 Rek", "nilai": "Rp3.637,7 M" },
+            { "label": "Upgrade",   "warna": "#307fe2", "rekening": "693 Rek",     "nilai": "Rp8,5 M" }
+          ]
+        }
+      }
     }
   },
   "bisnisRingkasan": {

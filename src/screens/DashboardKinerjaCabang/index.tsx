@@ -24,6 +24,10 @@ import {EndingBalanceCard} from '../../components/bisnis/EndingBalanceCard';
 import {BarTableCard} from '../../components/bisnis/BarTableCard';
 import {AkuisiChurnCard} from '../../components/bisnis/AkuisiChurnCard';
 import {TrendEndbalCard} from '../../components/bisnis/TrendEndbalCard';
+import {KreditRingkasanKPI} from '../../components/bisnis/KreditRingkasanKPI';
+import {KreditBookingCard} from '../../components/bisnis/KreditBookingCard';
+import {TrenPencairanChart} from '../../components/bisnis/TrenPencairanChart';
+import {KreditProdukCard} from '../../components/bisnis/KreditProdukCard';
 import {useBranchPerformance} from '../../hooks/useBranchPerformance';
 import rawData from '../../data/branchPerformanceData.json';
 
@@ -155,6 +159,16 @@ export function DashboardKinerjaCabangScreen() {
             <BarTableCard data={appData.bisnisDPK.tabungan3PI} />
             <AkuisiChurnCard data={appData.bisnisDPK.akuisiChurn} />
             <TrendEndbalCard data={appData.bisnisDPK.trendEndbal} />
+          </>
+        )}
+
+        {isBisnis && activeSubMenu === 'Kredit' && (
+          <>
+            <EndingBalanceCard data={appData.bisnisKredit.endingBalance} />
+            <KreditRingkasanKPI data={appData.bisnisKredit.ringkasanKPI} />
+            <KreditBookingCard data={appData.bisnisKredit.booking} />
+            <TrenPencairanChart data={appData.bisnisKredit.trendPencairan} />
+            <KreditProdukCard data={appData.bisnisKredit.produk} />
           </>
         )}
 

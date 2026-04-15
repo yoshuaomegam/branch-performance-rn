@@ -44,7 +44,7 @@ export function AkuisiChurnCard({data}: Props) {
       </View>
 
       {/* Rincian per segmen */}
-      <Text style={styles.rincianTitle}>Rincian per Segmen</Text>
+      <Text style={styles.title}>Rincian per Segmen</Text>
       <View style={styles.table}>
         <View style={styles.tableHeader}>
           <Text style={[styles.colHeader, styles.colSegmen]}>Segmen</Text>
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   rincianTitle: {
     fontSize: Typography.fontSize.xs,
     fontWeight: '700',
-    color: Colors.textSecondary,
+    color: Colors.textPrimary,
     marginBottom: Spacing.xs,
   },
   table: {

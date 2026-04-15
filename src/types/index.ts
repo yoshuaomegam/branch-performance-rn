@@ -237,6 +237,7 @@ export interface TrendMetrik {
 }
 
 export interface TrendEndbal {
+  subtitle: string;
   bulan: string[];
   series: TrendSeries[];
   metrik: TrendMetrik[];
@@ -269,6 +270,87 @@ export interface RingkasanPencapaian {
 
 export interface BisnisRingkasan {
   ringkasanPencapaian: RingkasanPencapaian;
+}
+
+// Bisnis Kredit types
+export interface KreditKPIStat {
+  label: string;
+  nilai: string;
+  keterangan: string;
+  keteranganStatus: 'good' | 'warning' | 'bad' | 'neutral';
+  target?: string;
+}
+
+export interface KreditRingkasanKPIData {
+  stats: KreditKPIStat[];
+}
+
+export interface KreditBookingStat {
+  label: string;
+  nilai: string;
+  target?: string;
+  keteranganStatus: 'good' | 'warning' | 'bad' | 'neutral';
+}
+
+export interface KreditBookingData {
+  chips: string[];
+  stats: KreditBookingStat[];
+}
+
+export interface TrenPencairanBar {
+  date: string;   // ISO "2026-03-30"
+  label: string;  // display "30 Mar"
+  nilai: number;
+}
+
+export interface TrenPencairanData {
+  chips: string[];
+  allBars: TrenPencairanBar[];
+  defaultRange: { start: string; end: string };
+}
+
+export interface KreditProdukGrowth {
+  pct: string;
+  up: boolean;
+}
+
+export interface KreditProdukItem {
+  label: string;
+  nilai: string;
+  npl?: string;
+  growth: Record<string, KreditProdukGrowth>;
+}
+
+export interface ShiftingRow {
+  fromKol: string;
+  toValues: (number | null)[];
+}
+
+export interface ShiftingSummary {
+  label: string;
+  warna: string;
+  rekening: string;
+  nilai: string;
+}
+
+export interface ShiftingKolektibilitas {
+  kolList: string[];
+  rows: ShiftingRow[];
+  summary: ShiftingSummary[];
+}
+
+export interface KreditProdukData {
+  chips: string[];
+  produkList: KreditProdukItem[];
+  shiftingByProduk: Record<string, ShiftingKolektibilitas>;
+}
+
+export interface BisnisKredit {
+  endingBalance: DPKEndingBalance;
+  ringkasanKPI: KreditRingkasanKPIData;
+  booking: KreditBookingData;
+  trendPencairan: TrenPencairanData;
+  produk: KreditProdukData;
 }
 
 export interface DashboardData {
