@@ -2,7 +2,21 @@
   "permissions": {
     "allow": [
       "Bash(awk -F: '{print $1\":\"$2}')",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(grep -o 'name: Frame[^\\\\\\\\n]*\\\\|name: [A-Z][^\\\\\\\\n]*type: FRAME\\\\|type: CANVAS\\\\|type: FRAME' \"C:\\\\Users\\\\missy\\\\.claude\\\\projects\\\\D--Projects-branch-performance-rn\\\\bb107951-d6f0-49e4-b786-3d746bc3634e\\\\tool-results\\\\mcp-figma-developer-get_figma_data-1776142258497.txt\")",
+      "mcp__figma-developer__get_figma_data",
+      "mcp__plugin_figma_figma__get_design_context",
+      "mcp__plugin_figma_figma__get_screenshot",
+      "Bash(node:*)",
+      "mcp__plugin_figma_figma__get_metadata",
+      "Bash(npx eslint:*)",
+      "Bash(ls D:/Projects/branch-performance-rn/.eslint*)",
+      "Bash(ls D:/Projects/branch-performance-rn/*.json)",
+      "Bash(npx react-native:*)",
+      "Bash(python3:*)",
+      "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); print\\(data[0]['text'][:8000]\\)\")",
+      "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); text=data[0]['text']; idx=text.find\\('Bisnis-DPK'\\); print\\(text[max\\(0,idx-100\\):idx+500]\\)\")",
+      "Bash(python -c ':*)"
     ]
   }
 }
