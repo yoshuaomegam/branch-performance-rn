@@ -28,6 +28,8 @@ import {KreditRingkasanKPI} from '../../components/bisnis/KreditRingkasanKPI';
 import {KreditBookingCard} from '../../components/bisnis/KreditBookingCard';
 import {TrenPencairanChart} from '../../components/bisnis/TrenPencairanChart';
 import {KreditProdukCard} from '../../components/bisnis/KreditProdukCard';
+import {KopraKeaktifanCard} from '../../components/bisnis/KopraKeaktifanCard';
+import {KopraPipelineCard} from '../../components/bisnis/KopraPipelineCard';
 import {LivinRingkasanKPI} from '../../components/bisnis/LivinRingkasanKPI';
 import {LivinChannelCard} from '../../components/bisnis/LivinChannelCard';
 import {LivinTrenChart} from '../../components/bisnis/LivinTrenChart';
@@ -174,6 +176,16 @@ export function DashboardKinerjaCabangScreen() {
             <KreditBookingCard data={appData.bisnisKredit.booking} />
             <TrenPencairanChart data={appData.bisnisKredit.trendPencairan} />
             <KreditProdukCard data={appData.bisnisKredit.produk} />
+          </>
+        )}
+
+        {isBisnis && activeSubMenu === 'Kopra' && (
+          <>
+            <EndingBalanceCard data={appData.bisnisKopra.endingBalance} />
+            <LivinRingkasanKPI data={appData.bisnisKopra.ringkasanKPI} columns={2} />
+            <LivinTrenChart data={appData.bisnisKopra.trendUreg} />
+            <KopraKeaktifanCard data={appData.bisnisKopra.keaktifan} />
+            <KopraPipelineCard data={appData.bisnisKopra.pipeline} />
           </>
         )}
 

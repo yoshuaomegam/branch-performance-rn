@@ -407,6 +407,44 @@ export interface LivinFrekuensiData {
   byChip: Record<string, LivinFrekuensiItem[]>;
 }
 
+// Bisnis Kopra types
+export interface KopraKeaktifanItem {
+  label: string;
+  jumlah: number;
+  pct: number;
+}
+
+export interface KopraKeaktifanSegmen {
+  nama: string;
+  items: KopraKeaktifanItem[];
+}
+
+export interface KopraKeaktifanData {
+  segmen: KopraKeaktifanSegmen[];
+}
+
+export interface KopraPipelineArea {
+  nama: string;
+  jarak: string;
+  perusahaan: string;
+  estimasiSV: string;
+  target: number;
+  onboard: number;
+}
+
+export interface KopraPipelineData {
+  areas: KopraPipelineArea[];
+  infoBox: string;
+}
+
+export interface BisnisKopra {
+  endingBalance: DPKEndingBalance;
+  ringkasanKPI: LivinRingkasanKPIData;
+  trendUreg: TrenPencairanData;
+  keaktifan: KopraKeaktifanData;
+  pipeline: KopraPipelineData;
+}
+
 export interface BisnisLivin {
   endingBalance: DPKEndingBalance;
   ringkasanKPI: LivinRingkasanKPIData;

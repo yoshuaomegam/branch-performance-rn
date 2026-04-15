@@ -468,6 +468,111 @@
       }
     }
   },
+  "bisnisKopra": {
+    "endingBalance": {
+      "label": "Kopra",
+      "tanggal": "31 Mar 2026",
+      "nilai": "90 UREG",
+      "target": "≥ 120 UREG",
+      "keterangan": "-30 UREG (25%). Masih di Bawah Target",
+      "keteranganUp": false,
+      "perbandingan": [
+        { "tanggal": "28 Feb 2026", "nilai": "88 UREG", "growth": "2,3% MoM",  "growthUp": true },
+        { "tanggal": "31 Des 2025", "nilai": "74 UREG", "growth": "21,6% YtD", "growthUp": true },
+        { "tanggal": "31 Mar 2025", "nilai": "78 UREG", "growth": "15,4% YoY", "growthUp": true }
+      ]
+    },
+    "ringkasanKPI": {
+      "stats": [
+        { "label": "USAK",             "nilai": "12",     "keterangan": "↑20% • Target 10", "keteranganStatus": "good"    },
+        { "label": "SV Total",         "nilai": "Rp1,4M", "keterangan": "↑11,6%",           "keteranganStatus": "good"    },
+        { "label": "Frek. Rata-Rata",  "nilai": "12,2x",  "keterangan": "per klien/bln",    "keteranganStatus": "neutral" },
+        { "label": "Pipeline Baru",    "nilai": "8",      "keterangan": "Badan Usaha",       "keteranganStatus": "neutral" }
+      ]
+    },
+    "trendUreg": {
+      "chips": ["MoM", "YtD", "YoY"],
+      "allBars": [
+        { "date": "2026-03-16", "label": "16 Mar", "nilai": 2 },
+        { "date": "2026-03-17", "label": "17 Mar", "nilai": 3 },
+        { "date": "2026-03-18", "label": "18 Mar", "nilai": 3 },
+        { "date": "2026-03-19", "label": "19 Mar", "nilai": 2 },
+        { "date": "2026-03-20", "label": "20 Mar", "nilai": 4 },
+        { "date": "2026-03-21", "label": "21 Mar", "nilai": 3 },
+        { "date": "2026-03-22", "label": "22 Mar", "nilai": 2 },
+        { "date": "2026-03-23", "label": "23 Mar", "nilai": 3 },
+        { "date": "2026-03-24", "label": "24 Mar", "nilai": 2 },
+        { "date": "2026-03-25", "label": "25 Mar", "nilai": 4 },
+        { "date": "2026-03-26", "label": "26 Mar", "nilai": 3 },
+        { "date": "2026-03-27", "label": "27 Mar", "nilai": 3 },
+        { "date": "2026-03-28", "label": "28 Mar", "nilai": 2 },
+        { "date": "2026-03-29", "label": "29 Mar", "nilai": 4 },
+        { "date": "2026-03-30", "label": "30 Mar", "nilai": 3 },
+        { "date": "2026-03-31", "label": "31 Mar", "nilai": 7 },
+        { "date": "2026-04-01", "label": "1 Apr",  "nilai": 6 },
+        { "date": "2026-04-02", "label": "2 Apr",  "nilai": 4 },
+        { "date": "2026-04-03", "label": "3 Apr",  "nilai": 3 },
+        { "date": "2026-04-04", "label": "4 Apr",  "nilai": 3 },
+        { "date": "2026-04-05", "label": "5 Apr",  "nilai": 2 },
+        { "date": "2026-04-06", "label": "6 Apr",  "nilai": 3 },
+        { "date": "2026-04-07", "label": "7 Apr",  "nilai": 3 },
+        { "date": "2026-04-08", "label": "8 Apr",  "nilai": 2 },
+        { "date": "2026-04-09", "label": "9 Apr",  "nilai": 3 },
+        { "date": "2026-04-10", "label": "10 Apr", "nilai": 3 },
+        { "date": "2026-04-11", "label": "11 Apr", "nilai": 4 },
+        { "date": "2026-04-12", "label": "12 Apr", "nilai": 2 },
+        { "date": "2026-04-13", "label": "13 Apr", "nilai": 3 },
+        { "date": "2026-04-14", "label": "14 Apr", "nilai": 3 },
+        { "date": "2026-04-15", "label": "15 Apr", "nilai": 2 }
+      ],
+      "defaultRange": { "start": "2026-03-30", "end": "2026-04-03" }
+    },
+    "keaktifan": {
+      "segmen": [
+        {
+          "nama": "Wholesale",
+          "items": [
+            { "label": "0 Trx",          "jumlah": 8,  "pct": 44  },
+            { "label": "< 5 Trx/Bulan",  "jumlah": 12, "pct": 67  },
+            { "label": "6-10 Trx/Bulan", "jumlah": 18, "pct": 100 },
+            { "label": "11-15 Trx/Bulan","jumlah": 10, "pct": 56  },
+            { "label": "> 15 Trx/Bulan", "jumlah": 5,  "pct": 28  }
+          ]
+        },
+        {
+          "nama": "SME",
+          "items": [
+            { "label": "0 Trx",          "jumlah": 15, "pct": 75  },
+            { "label": "< 5 Trx/Bulan",  "jumlah": 20, "pct": 100 },
+            { "label": "6-10 Trx/Bulan", "jumlah": 14, "pct": 70  },
+            { "label": "11-15 Trx/Bulan","jumlah": 8,  "pct": 40  },
+            { "label": "> 15 Trx/Bulan", "jumlah": 3,  "pct": 15  }
+          ]
+        }
+      ]
+    },
+    "pipeline": {
+      "areas": [
+        {
+          "nama": "Kawasan Pelabuhan Tanjung Priuk",
+          "jarak": "~8 km",
+          "perusahaan": "~142 Perusahaan",
+          "estimasiSV": "est. SV Rp420 Juta/Bulan",
+          "target": 142,
+          "onboard": 3
+        },
+        {
+          "nama": "Kawasan Pelabuhan Muara Karang",
+          "jarak": "~6 km",
+          "perusahaan": "~98 Perusahaan",
+          "estimasiSV": "est. SV Rp280 Juta/Bulan",
+          "target": 98,
+          "onboard": 3
+        }
+      ],
+      "infoBox": "Fokus konversi 5 leads di KBN Cakung untuk tutup gap target Q3."
+    }
+  },
   "bisnisLivin": {
     "endingBalance": {
       "label": "Livin",

@@ -5,6 +5,7 @@ import type {LivinRingkasanKPIData} from '../../types';
 
 interface Props {
   data: LivinRingkasanKPIData;
+  columns?: 2 | 3;
 }
 
 function getBadgeColor(status?: string): {bg: string; text: string} {
@@ -14,7 +15,9 @@ function getBadgeColor(status?: string): {bg: string; text: string} {
   return {bg: Colors.background, text: Colors.textSecondary};
 }
 
-export function LivinRingkasanKPI({data}: Props) {
+export function LivinRingkasanKPI({data, columns = 3}: Props) {
+  // '30%' leaves room for 3 cols; '47%' leaves room for 2 cols (gap is 8px)
+  const cellWidth = columns === 2 ? '47%' : '30%';
   return (
     <View style={styles.card}>
       <Text style={styles.title}>Ringkasan KPI</Text>
@@ -22,7 +25,7 @@ export function LivinRingkasanKPI({data}: Props) {
         {data.stats.map((stat, idx) => {
           const badge = stat.keterangan ? getBadgeColor(stat.keteranganStatus) : null;
           return (
-            <View key={idx} style={styles.cell}>
+            <View key={idx} style={[styles.cell, {width: cellWidth}]}>
               <Text style={styles.cellLabel}>{stat.label}</Text>
               <Text style={styles.cellNilai}>{stat.nilai}</Text>
               {stat.keterangan && badge ? (

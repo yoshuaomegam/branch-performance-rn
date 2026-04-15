@@ -16,7 +16,9 @@
       "Bash(python3:*)",
       "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); print\\(data[0]['text'][:8000]\\)\")",
       "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); text=data[0]['text']; idx=text.find\\('Bisnis-DPK'\\); print\\(text[max\\(0,idx-100\\):idx+500]\\)\")",
-      "Bash(python -c ':*)"
+      "Bash(python -c ':*)",
+      "Bash(awk '/^\\\\[/,/^\\\\]/' \"C:\\\\Users\\\\missy\\\\.claude\\\\projects\\\\D--Projects-branch-performance-rn\\\\2e689153-0d68-4bee-9d90-0899f44d5b73\\\\tool-results\\\\toolu_01TEnYSPxTNzdRN9pcnGKXBj.json\")",
+      "Bash(python:*)"
     ]
   }
 }
