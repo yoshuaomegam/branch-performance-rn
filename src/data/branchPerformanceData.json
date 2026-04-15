@@ -3,7 +3,7 @@
     "id": "KCP-JPS",
     "nama": "KCP Jakarta Pluit Selatan",
     "kota": "Jakarta Selatan",
-    "area": "Area 2",
+    "area": "Jakarta Utara 2",
     "pimpinan": "Hartono Prasetyo"
   },
   "periode": "Mar 2026",
@@ -37,8 +37,8 @@
   "trenSkor": {
     "bulan": ["Des 25", "Jan 26", "Feb 26", "Mar 26"],
     "data": [
-      { "id": "semua", "nama": "Semua", "nilai": [82, 85, 80, 81], "warna": "#121518" },
-      { "id": "bisnis", "nama": "Bisnis", "nilai": [82, 85, 82, 82], "warna": "#0061AA" },
+      { "id": "semua", "nama": "Semua", "nilai": [82, 85, 80, 81], "warna": "#0061AA" },
+      { "id": "bisnis", "nama": "Bisnis", "nilai": [82, 85, 82, 82], "warna": "#534AB7" },
       { "id": "strategi", "nama": "Strategi", "nilai": [75, 78, 74, 74], "warna": "#D19000" },
       { "id": "finansial", "nama": "Finansial", "nilai": [70, 72, 68, 68], "warna": "#D93535" },
       { "id": "operasional", "nama": "Operasional", "nilai": [88, 90, 86, 88], "warna": "#06AA6F" }
@@ -51,7 +51,7 @@
       "label": "Performa Rendah",
       "judul": "Pace Akuisisi CIF di Bawah Target",
       "deskripsi": "Saat ini 23 CIF dari target 30 bulan ini. Proyeksi akhir bulan hanya 27% vs target 360. Perlu +7 CIF minggu ini untuk stay on-track.",
-      "cta": null
+      "cta": "Fokus akuisisi +7 CIF minggu ini untuk kembali on-track."
     },
     {
       "id": "gmm",
@@ -107,14 +107,14 @@
     "levelAt": 70,
     "levelOver30": 1,
     "distribusiDampak": [
-      { "label": "High", "jumlah": 2, "pct": 25.0, "warna": "#FF9500" },
-      { "label": "Medium", "jumlah": 3, "pct": 37.6, "warna": "#FFCC00" },
-      { "label": "Low", "jumlah": 3, "pct": 37.6, "warna": "#06AA6F" }
+      { "label": "High", "jumlah": 2, "pct": 25.0, "warna": "#D93535" },
+      { "label": "Medium", "jumlah": 3, "pct": 37.5, "warna": "#D19000" },
+      { "label": "Low", "jumlah": 3, "pct": 37.5, "warna": "#06AA6F" }
     ],
     "durasiOpen": [
-      { "label": "<30 hari", "jumlah": 1, "warna": "#FF9500" },
-      { "label": "10-90 hari", "jumlah": 1, "warna": "#FFCC00" },
-      { "label": ">90 hari", "jumlah": 1, "warna": "#06AA6F" }
+      { "label": "<30 hari", "jumlah": 3, "warna": "#06AA6F" },
+      { "label": "10-90 hari", "jumlah": 2, "warna": "#D19000" },
+      { "label": ">90 hari", "jumlah": 1, "warna": "#D93535" }
     ]
   },
   "marketShare": {
@@ -127,11 +127,105 @@
       { "id": "cimb", "nama": "CIMB", "pct": 6.4, "warna": "#C00000" }
     ]
   },
+  "bisnisDPK": {
+    "endingBalance": {
+      "label": "Ending Balance DPK",
+      "tanggal": "31 Mar 2026",
+      "nilai": "Rp680 M",
+      "target": "630 M",
+      "keterangan": "+Rp50 M (8%) Melampaui Target",
+      "keteranganUp": true,
+      "perbandingan": [
+        { "tanggal": "28 Feb 2026", "nilai": "Rp629 M", "growth": "8,1% MoM", "growthUp": true },
+        { "tanggal": "31 Des 2025", "nilai": "Rp590 M", "growth": "15,3% YtD", "growthUp": true },
+        { "tanggal": "31 Mar 2025", "nilai": "Rp610 M", "growth": "11,5% YoY", "growthUp": true }
+      ]
+    },
+    "rincianDPK": {
+      "judul": "Rincian DPK per Produk",
+      "periodList": ["DoD", "MoM", "YoY", "YtD"],
+      "breakdown": [
+        { "label": "Tabungan", "pct": 46, "warna": "#074db6" },
+        { "label": "Giro", "pct": 28, "warna": "#307fe2" },
+        { "label": "Deposito", "pct": 26, "warna": "#6faefc" }
+      ],
+      "rows": [
+        { "produk": "Tabungan", "cif": "1.248", "balance": "Rp312 M", "target": "Rp300 M", "capaian": "104%", "growth": "9,8%", "growthUp": true, "balanceStatus": "good", "capaianStatus": "good" },
+        { "produk": "Giro", "cif": "384", "balance": "Rp188 M", "target": "Rp180 M", "capaian": "104%", "growth": "12%", "growthUp": true, "balanceStatus": "good", "capaianStatus": "good" },
+        { "produk": "Deposito", "cif": "216", "balance": "Rp180 M", "target": "Rp150 M", "capaian": "120%", "growth": "1,2%", "growthUp": false, "balanceStatus": "good", "capaianStatus": "good" }
+      ]
+    },
+    "tabungan3PI": {
+      "judul": "Tabungan 3PI per Segmen",
+      "periodList": ["DoD", "MoM", "YoY", "YtD"],
+      "breakdown": [
+        { "label": "Payroll", "pct": 36, "warna": "#074db6" },
+        { "label": "Badan Usaha", "pct": 25, "warna": "#307fe2" },
+        { "label": "Prioritas", "pct": 22, "warna": "#6faefc" },
+        { "label": "Individual", "pct": 17, "warna": "#a2cfff" }
+      ],
+      "rows": [
+        { "produk": "Payroll", "cif": "448", "balance": "Rp112 M", "target": "Rp100 M", "capaian": "112%", "growth": "14,3%", "growthUp": true, "balanceStatus": "good", "capaianStatus": "good" },
+        { "produk": "Badan Usaha", "cif": "182", "balance": "Rp78 M", "target": "Rp80 M", "capaian": "97%", "growth": "1,1%", "growthUp": false, "balanceStatus": "warning", "capaianStatus": "warning" },
+        { "produk": "Prioritas", "cif": "124", "balance": "Rp68 M", "target": "Rp70 M", "capaian": "97%", "growth": "8,2%", "growthUp": true, "balanceStatus": "warning", "capaianStatus": "warning" },
+        { "produk": "Individual", "cif": "494", "balance": "Rp54 M", "target": "Rp60 M", "capaian": "96%", "growth": "3,2%", "growthUp": false, "balanceStatus": "warning", "capaianStatus": "warning" }
+      ]
+    },
+    "akuisiChurn": {
+      "stats": [
+        { "label": "Akuisisi Nasabah Baru", "nilai": "23", "keterangan": "77% dari Target 30", "keteranganStatus": "warning" },
+        { "label": "Nasabah Churn", "nilai": "8", "keterangan": "+3 dari Bulan Lalu", "keteranganStatus": "good" },
+        { "label": "Nasabah Nett", "nilai": "+15", "keterangan": "Akuisisi - Churn", "keteranganStatus": "neutral" },
+        { "label": "Endbal NTB", "nilai": "Rp18,4 M", "keterangan": "Avg Rp800 Juta/NTB", "keteranganStatus": "neutral" }
+      ],
+      "rincian": [
+        { "segmen": "Payroll", "akuisisi": 8, "churn": 1, "nett": 7, "nettUp": true },
+        { "segmen": "Badan Usaha", "akuisisi": 6, "churn": 2, "nett": 4, "nettUp": true },
+        { "segmen": "Prioritas", "akuisisi": 4, "churn": 1, "nett": 3, "nettUp": true },
+        { "segmen": "Individual", "akuisisi": 4, "churn": 5, "nett": -1, "nettUp": false }
+      ]
+    },
+    "trendEndbal": {
+      "bulan": ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
+      "series": [
+        { "label": "2024", "warna": "#D19000", "nilai": [218, 225, 232, 238, 242, 246, 250, 255, 260, 265, 270, 276] },
+        { "label": "2026", "warna": "#0061AA", "nilai": [280, 290, 312, null, null, null, null, null, null, null, null, null] }
+      ],
+      "metrik": [
+        { "nama": "Average Balance", "y2024": "Rp218 M", "y2025": "Rp276,6 M", "y2026": "Rp324,4 M" },
+        { "nama": "Endbal", "y2024": "Rp249,9 M", "y2025": "Rp276,6 M", "y2026": "Rp295,5 M" },
+        { "nama": "% Avg/End", "y2024": "11%", "y2025": "67%", "y2026": "92%" },
+        { "nama": "Min", "y2024": "-", "y2025": "-", "y2026": "Rp395,8 M" },
+        { "nama": "Max", "y2024": "-", "y2025": "-", "y2026": "Rp440,1 M" }
+      ],
+      "catatan": "Pattern uplift akhir bulan makin besar di 2026 — % Avg/Endbal naik dari 91% (2024) → 67% (2025). Growing average balance dengan akuisisi payroll awal bulan."
+    }
+  },
+  "bisnisRingkasan": {
+    "ringkasanPencapaian": {
+      "periodList": ["DoD", "MoM", "YoY", "YtD"],
+      "rows": [
+        { "produk": "DPK", "kategori": "Tabungan", "aktual": "Rp312 M", "target": "Rp280 M", "capaian": "111%", "growth": "+4.2%", "growthUp": true, "statusCapaian": "good" },
+        { "produk": "DPK", "kategori": "Giro", "aktual": "Rp96 M", "target": "Rp80 M", "capaian": "120%", "growth": "+2.8%", "growthUp": true, "statusCapaian": "good" },
+        { "produk": "DPK", "kategori": "Deposito", "aktual": "Rp72 M", "target": "Rp40 M", "capaian": "180%", "growth": "+8.1%", "growthUp": true, "statusCapaian": "good" },
+        { "produk": "Kredit", "kategori": "Outstanding", "aktual": "Rp210 M", "target": "Rp250 M", "capaian": "84%", "growth": "-1.5%", "growthUp": false, "statusCapaian": "warning" },
+        { "produk": "Kredit", "kategori": "NPL", "aktual": "1.4%", "target": "< 2%", "capaian": "Good", "growth": "+0.0pp", "growthUp": true, "statusCapaian": "good" },
+        { "produk": "Livin", "kategori": "Akuisisi", "aktual": "100", "target": "50", "capaian": "200%", "growth": "+12", "growthUp": true, "statusCapaian": "good" },
+        { "produk": "Kopra", "kategori": "Akuisisi", "aktual": "18", "target": "20", "capaian": "90%", "growth": "+2", "growthUp": true, "statusCapaian": "warning" },
+        { "produk": "Merchant", "kategori": "GMM Active", "aktual": "68%", "target": "70%", "capaian": "97%", "growth": "-0.5pp", "growthUp": false, "statusCapaian": "warning" },
+        { "produk": "Merchant", "kategori": "Akuisisi EDC", "aktual": "12", "target": "20", "capaian": "60%", "growth": "-3", "growthUp": false, "statusCapaian": "bad" }
+      ]
+    }
+  },
   "ringkasanKPI": {
-    "kategoriList": ["BCK", "Finansial", "Operasional", "Risiko"],
+    "kategoriList": ["Bisnis", "Strategi", "Finansial", "Operasional", "Risiko"],
     "periodList": ["DoD", "MoM", "YtD", "YoY"],
     "data": {
-      "BCK": {
+      "Strategi": { "seksi": [] },
+      "Finansial": { "seksi": [] },
+      "Operasional": { "seksi": [] },
+      "Risiko": { "seksi": [] },
+      "Bisnis": {
         "seksi": [
           {
             "judul": "DPK",
@@ -159,10 +253,7 @@
             ]
           }
         ]
-      },
-      "Finansial": { "seksi": [] },
-      "Operasional": { "seksi": [] },
-      "Risiko": { "seksi": [] }
+      }
     }
   }
 }

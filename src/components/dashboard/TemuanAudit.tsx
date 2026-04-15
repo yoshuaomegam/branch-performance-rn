@@ -8,67 +8,112 @@ interface TemuanAuditProps {
 }
 
 export function TemuanAudit({data}: TemuanAuditProps) {
+  const totalDampakPct = data.distribusiDampak.reduce((s, d) => s + d.pct, 0) || 1;
+  const maxDurasi = Math.max(...data.durasiOpen.map(d => d.jumlah));
+
   return (
     <View style={styles.card}>
-      {/* Header */}
-      <View style={styles.headerRow}>
-        <Text style={styles.title}>Ringkasan Temuan Audit</Text>
-        <Text style={styles.updated}>Updated: {data.updatedAt}</Text>
-      </View>
 
-      {/* Stats row */}
-      <View style={styles.statsRow}>
-        <View style={styles.statItem}>
-          <Text style={styles.statNum}>{data.total}</Text>
-        </View>
-        <View style={styles.statSep} />
-        <View style={styles.statItem}>
-          <Text style={styles.statNum}>{data.levelPct}%</Text>
-          <Text style={styles.statLabel}>Level</Text>
-        </View>
-        <View style={styles.statSep} />
-        <View style={styles.statItem}>
-          <Text style={styles.statNum}>at {data.levelAt}%</Text>
-        </View>
-        <View style={styles.statSep} />
-        <View style={styles.statItem}>
-          <Text style={styles.statNum}>{data.levelOver30}</Text>
-          <Text style={styles.statLabel}>Level</Text>
-          <Text style={styles.statSublabel}>{'>30 hari'}</Text>
-        </View>
-      </View>
+      {/* ── Header ───────────────────────────────────── */}
+      <Text style={styles.title}>Ringkasan Temuan Audit</Text>
+      <Text style={styles.updated}>Updated: {data.updatedAt}</Text>
 
-      {/* Open badge */}
-      <View style={styles.openRow}>
-        <View style={styles.openBadge}>
-          <Text style={styles.openText}>{data.open} Open</Text>
-        </View>
-      </View>
+      {/* ── Stats — separated blocks ──────────────────── */}
+      <View style={styles.statsList}>
 
-      {/* Distribusi Dampak */}
-      <Text style={styles.subTitle}>Distribusi Dampak:</Text>
-      <View style={styles.dampakRow}>
-        {data.distribusiDampak.map(d => (
-          <View key={d.label} style={[styles.dampakPill, {backgroundColor: d.warna + '22', borderColor: d.warna}]}>
-            <Text style={[styles.dampakText, {color: d.warna === '#FFCC00' ? '#7A6000' : d.warna === '#FF9500' ? '#7A4000' : d.warna}]}>
-              {d.label} {d.label === 'High' ? `${d.jumlah} temuan` : `${d.pct}%`}
+        {/* Block 1: Total Temuan */}
+        <View style={styles.statBlock}>
+          <Text style={styles.statLabel}>Total Temuan</Text>
+          <View style={styles.statContent}>
+            <Text style={styles.statMain}>{data.total}</Text>
+            <View style={styles.openBadge}>
+              <Text style={styles.openText}>{data.open} Open</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Block 2: Level Compliance */}
+        <View style={styles.statBlock}>
+          <Text style={styles.statLabel}>Level Compliance</Text>
+          <View style={styles.statContent}>
+            <Text style={styles.statMain}>{data.levelPct}%</Text>
+            <Text style={styles.statSub}>≥{data.levelAt}% Target</Text>
+          </View>
+        </View>
+
+        {/* Block 3: Melebihi Batas */}
+        <View style={styles.statBlock}>
+          <Text style={styles.statLabel}>Melebihi Batas</Text>
+          <View style={styles.statContent}>
+            <Text style={[styles.statMain, data.levelOver30 > 0 && {color: Colors.danger}]}>
+              {data.levelOver30}
             </Text>
+            <Text style={styles.statSub}>{'>30 hari'}</Text>
+          </View>
+        </View>
+
+      </View>
+
+      {/* ── Distribusi Dampak ─────────────────────────── */}
+      <Text style={styles.subTitle}>Distribusi Dampak</Text>
+
+      {/* Proportional bar */}
+      <View style={styles.dampakBar}>
+        {data.distribusiDampak.map((d, idx) => {
+          const isFirst = idx === 0;
+          const isLast  = idx === data.distribusiDampak.length - 1;
+          return (
+            <View
+              key={d.label}
+              style={[
+                styles.dampakSeg,
+                {
+                  flex: d.pct / totalDampakPct,
+                  backgroundColor: d.warna,
+                  borderTopLeftRadius: isFirst ? 6 : 0,
+                  borderBottomLeftRadius: isFirst ? 6 : 0,
+                  borderTopRightRadius: isLast ? 6 : 0,
+                  borderBottomRightRadius: isLast ? 6 : 0,
+                },
+              ]}>
+              <Text style={styles.dampakSegLabel} numberOfLines={1}>
+                {d.label} {d.pct}%
+              </Text>
+            </View>
+          );
+        })}
+      </View>
+
+      {/* Legend */}
+      <View style={styles.dampakLegend}>
+        {data.distribusiDampak.map(d => (
+          <View key={d.label} style={styles.legendItem}>
+            <View style={[styles.legendDot, {backgroundColor: d.warna}]} />
+            <Text style={styles.legendText}>{d.label} {d.jumlah} temuan</Text>
           </View>
         ))}
       </View>
 
-      {/* Durasi Temuan */}
-      <Text style={styles.subTitle}>Durasi Temuan (Berdasarkan Open):</Text>
+      {/* ── Divider ───────────────────────────────────── */}
+      <View style={styles.divider} />
+
+      {/* ── Durasi Temuan ─────────────────────────────── */}
+      <Text style={styles.subTitle}>Durasi Temuan (Berstatus Open)</Text>
+
       <View style={styles.durasiList}>
         {data.durasiOpen.map(d => (
           <View key={d.label} style={styles.durasiRow}>
             <Text style={styles.durasiLabel}>{d.label}</Text>
-            <View style={[styles.durasiBar, {backgroundColor: d.warna}]}>
-              <Text style={styles.durasiBarLabel}>{d.jumlah} Temuan</Text>
+            <View style={styles.durasiTrack}>
+              <View style={[styles.durasiBarFill, {flex: d.jumlah, backgroundColor: d.warna}]}>
+                <Text style={styles.durasiBarLabel}>{d.jumlah} Temuan</Text>
+              </View>
+              {d.jumlah < maxDurasi && <View style={{flex: maxDurasi - d.jumlah}} />}
             </View>
           </View>
         ))}
       </View>
+
     </View>
   );
 }
@@ -84,63 +129,54 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     padding: Spacing.base,
   },
-  headerRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    marginBottom: Spacing.sm,
-  },
   title: {
     fontSize: Typography.fontSize.md,
     fontWeight: '700',
     color: Colors.textPrimary,
-    flex: 1,
+    marginBottom: 2,
   },
   updated: {
     fontSize: Typography.fontSize.xs,
     color: Colors.textSecondary,
+    marginBottom: Spacing.base,
   },
-  statsRow: {
+
+  // ── Stats ─────────────────────────────────────────
+  statsList: {
     flexDirection: 'row',
-    alignItems: 'center',
+    gap: Spacing.xs,
+    marginBottom: Spacing.base,
+  },
+  statBlock: {
+    flex: 1,
     backgroundColor: Colors.background,
     borderRadius: 8,
-    padding: Spacing.sm,
-    marginBottom: Spacing.sm,
-    gap: Spacing.xs,
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: Spacing.sm,
   },
-  statItem: {
-    flex: 1,
-    alignItems: 'center',
+  statLabel: {
+    fontSize: 10,
+    color: Colors.textSecondary,
+    marginBottom: 4,
   },
-  statNum: {
-    fontSize: Typography.fontSize.md,
+  statContent: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: 2,
+  },
+  statMain: {
+    fontSize: Typography.fontSize.xl,
     fontWeight: '800',
     color: Colors.textPrimary,
   },
-  statLabel: {
-    fontSize: 9,
+  statSub: {
+    fontSize: Typography.fontSize.xs,
     color: Colors.textSecondary,
-    textAlign: 'center',
-  },
-  statSublabel: {
-    fontSize: 8,
-    color: Colors.textSecondary,
-    textAlign: 'center',
-  },
-  statSep: {
-    width: 1,
-    height: 24,
-    backgroundColor: Colors.border,
-  },
-  openRow: {
-    marginBottom: Spacing.sm,
   },
   openBadge: {
-    alignSelf: 'flex-start',
     backgroundColor: Colors.dangerLight,
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: 3,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
     borderRadius: 4,
   },
   openText: {
@@ -148,29 +184,61 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: Colors.dangerDark,
   },
+
+  // ── Sub-section title ─────────────────────────────
   subTitle: {
     fontSize: Typography.fontSize.xs,
     fontWeight: '600',
     color: Colors.textSecondary,
     marginBottom: Spacing.xs,
-    marginTop: Spacing.xs,
   },
-  dampakRow: {
+
+  // ── Distribusi Dampak ─────────────────────────────
+  dampakBar: {
     flexDirection: 'row',
-    gap: Spacing.xs,
-    marginBottom: Spacing.sm,
+    height: 28,
+    marginBottom: Spacing.xs,
+    overflow: 'hidden',
+  },
+  dampakSeg: {
+    height: 28,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 4,
+  },
+  dampakSegLabel: {
+    fontSize: 9,
+    fontWeight: '700',
+    color: Colors.textWhite,
+  },
+  dampakLegend: {
+    flexDirection: 'row',
+    gap: Spacing.sm,
     flexWrap: 'wrap',
   },
-  dampakPill: {
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: 4,
-    borderRadius: 12,
-    borderWidth: 1,
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
   },
-  dampakText: {
-    fontSize: Typography.fontSize.xs,
-    fontWeight: '600',
+  legendDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 2,
   },
+  legendText: {
+    fontSize: 9,
+    color: Colors.textSecondary,
+  },
+
+  // ── Divider ───────────────────────────────────────
+  divider: {
+    height: 1,
+    backgroundColor: Colors.border,
+    marginVertical: Spacing.base,
+  },
+
+  // ── Durasi Temuan ─────────────────────────────────
   durasiList: {
     gap: Spacing.xs,
   },
@@ -179,10 +247,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacing.sm,
   },
-  durasiBar: {
+  durasiLabel: {
+    fontSize: Typography.fontSize.xs,
+    color: Colors.textSecondary,
+    width: 68,
+  },
+  durasiTrack: {
     flex: 1,
+    flexDirection: 'row',
     height: 22,
-    borderRadius: 4,
+    borderRadius: 11,
+    overflow: 'hidden',
+    backgroundColor: Colors.border,
+  },
+  durasiBarFill: {
+    height: 22,
     justifyContent: 'center',
     paddingHorizontal: Spacing.sm,
   },
@@ -190,10 +269,5 @@ const styles = StyleSheet.create({
     fontSize: Typography.fontSize.xs,
     fontWeight: '600',
     color: Colors.textWhite,
-  },
-  durasiLabel: {
-    fontSize: Typography.fontSize.xs,
-    color: Colors.textSecondary,
-    width: 60,
   },
 });

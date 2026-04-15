@@ -1,15 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
   View,
+  Text,
+  TouchableOpacity,
   RefreshControl,
   StatusBar,
 } from 'react-native';
-import {Colors, Spacing} from '../../theme';
+import {Colors, Spacing, Typography} from '../../theme';
 import {Header} from '../../components/common/Header';
-import {BranchBanner} from '../../components/dashboard/BranchBanner';
 import {PesanRCEO} from '../../components/dashboard/PesanRCEO';
 import {SkorCabangCard} from '../../components/dashboard/SkorCabangCard';
 import {TrenSkorBulanan} from '../../components/dashboard/TrenSkorBulanan';
@@ -18,7 +19,17 @@ import {SkorSectionCard} from '../../components/dashboard/SkorSectionCard';
 import {TemuanAudit} from '../../components/dashboard/TemuanAudit';
 import {MarketShare} from '../../components/dashboard/MarketShare';
 import {RingkasanKPI} from '../../components/dashboard/RingkasanKPI';
+import {RingkasanPencapaian} from '../../components/bisnis/RingkasanPencapaian';
+import {EndingBalanceCard} from '../../components/bisnis/EndingBalanceCard';
+import {BarTableCard} from '../../components/bisnis/BarTableCard';
+import {AkuisiChurnCard} from '../../components/bisnis/AkuisiChurnCard';
+import {TrendEndbalCard} from '../../components/bisnis/TrendEndbalCard';
 import {useBranchPerformance} from '../../hooks/useBranchPerformance';
+import rawData from '../../data/branchPerformanceData.json';
+
+const appData = rawData as any;
+
+const BISNIS_SUB_MENUS = ['Ringkasan', 'DPK', 'Kredit', 'Livin', 'Kopra', 'Merchant'];
 
 export function DashboardKinerjaCabangScreen() {
   const {
@@ -39,12 +50,15 @@ export function DashboardKinerjaCabangScreen() {
     handleTabChange,
   } = useBranchPerformance();
 
-  const [refreshing, setRefreshing] = React.useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [activeSubMenu, setActiveSubMenu] = useState('Ringkasan');
 
   const handleRefresh = React.useCallback(() => {
     setRefreshing(true);
     setTimeout(() => setRefreshing(false), 1000);
   }, []);
+
+  const isBisnis = selectedTab === 'Bisnis';
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -56,18 +70,38 @@ export function DashboardKinerjaCabangScreen() {
         cabangNama={cabang.nama}
         area={cabang.area}
         pimpinan={cabang.pimpinan}
-        onNotificationPress={() => {}}
-      />
-
-      {/* Fixed Branch Banner with tabs */}
-      <BranchBanner
-        cabang={cabang}
         skor={skorCabang.skor}
         kategori={skorCabang.kategori}
         activeTab={selectedTab}
         tabs={TABS}
         onTabChange={handleTabChange}
+        onNotificationPress={() => {}}
       />
+
+      {/* Bisnis sub-menu (sticky below header) */}
+      {isBisnis && (
+        <View style={styles.subMenuContainer}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.subMenuRow}>
+            {BISNIS_SUB_MENUS.map(menu => {
+              const isActive = activeSubMenu === menu;
+              return (
+                <TouchableOpacity
+                  key={menu}
+                  style={[styles.subMenuItem, isActive && styles.subMenuItemActive]}
+                  onPress={() => setActiveSubMenu(menu)}
+                  activeOpacity={0.8}>
+                  <Text style={[styles.subMenuText, isActive && styles.subMenuTextActive]}>
+                    {menu}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
+        </View>
+      )}
 
       {/* Scrollable content */}
       <ScrollView
@@ -83,38 +117,46 @@ export function DashboardKinerjaCabangScreen() {
           />
         }>
 
-        {/* Pesan RCEO */}
-        <PesanRCEO pesan={pesanRCEO} />
+        {/* ── Overview tab ── */}
+        {!isBisnis && (
+          <>
+            <PesanRCEO pesan={pesanRCEO} />
 
-        {/* Skor Cabang */}
-        <SkorCabangCard data={skorCabang} />
+            <View style={styles.combinedCard}>
+              <SkorCabangCard data={skorCabang} />
+              <TrenSkorBulanan data={trenSkor} />
+            </View>
 
-        {/* Tren Skor Bulanan */}
-        <TrenSkorBulanan data={trenSkor} />
+            <AlertProyeksi items={alertProyeksi} />
 
-        {/* Alert dan Proyeksi */}
-        <AlertProyeksi items={alertProyeksi} />
+            <SkorSectionCard title="Skor Bisnis" data={skorBisnis} />
+            <SkorSectionCard title="Skor Strategi" data={skorStrategi} />
+            <SkorSectionCard title="Skor Finansial" data={skorFinansial} />
+            <SkorSectionCard title="Skor Operasional" data={skorOperasional} />
 
-        {/* Skor Bisnis */}
-        <SkorSectionCard title="Skor Bisnis" data={skorBisnis} />
+            <TemuanAudit data={temuanAudit} />
+            <MarketShare data={marketShare} />
+            <RingkasanKPI data={ringkasanKPI} />
+          </>
+        )}
 
-        {/* Skor Strategi */}
-        <SkorSectionCard title="Skor Strategi" data={skorStrategi} />
+        {/* ── Bisnis tab ── */}
+        {isBisnis && activeSubMenu === 'Ringkasan' && (
+          <>
+            <SkorSectionCard title="Skor Bisnis" data={skorBisnis} />
+            <RingkasanPencapaian data={appData.bisnisRingkasan.ringkasanPencapaian} />
+          </>
+        )}
 
-        {/* Skor Finansial */}
-        <SkorSectionCard title="Skor Finansial" data={skorFinansial} />
-
-        {/* Skor Operasional */}
-        <SkorSectionCard title="Skor Operasional" data={skorOperasional} />
-
-        {/* Ringkasan Temuan Audit */}
-        <TemuanAudit data={temuanAudit} />
-
-        {/* Market Share */}
-        <MarketShare data={marketShare} />
-
-        {/* Ringkasan KPI */}
-        <RingkasanKPI data={ringkasanKPI} />
+        {isBisnis && activeSubMenu === 'DPK' && (
+          <>
+            <EndingBalanceCard data={appData.bisnisDPK.endingBalance} />
+            <BarTableCard data={appData.bisnisDPK.rincianDPK} />
+            <BarTableCard data={appData.bisnisDPK.tabungan3PI} />
+            <AkuisiChurnCard data={appData.bisnisDPK.akuisiChurn} />
+            <TrendEndbalCard data={appData.bisnisDPK.trendEndbal} />
+          </>
+        )}
 
         <View style={styles.bottomPad} />
       </ScrollView>
@@ -127,12 +169,47 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.surfaceDark,
   },
+  subMenuContainer: {
+    backgroundColor: Colors.surfaceLight,
+  },
+  subMenuRow: {
+    flexDirection: 'row',
+    paddingHorizontal: Spacing.xs,
+  },
+  subMenuItem: {
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm + 2,
+    borderBottomWidth: 2,
+    borderBottomColor: 'transparent',
+  },
+  subMenuItemActive: {
+    borderBottomColor: Colors.textPrimary,
+    backgroundColor: Colors.background,
+  },
+  subMenuText: {
+    fontSize: Typography.fontSize.sm,
+    fontWeight: '500',
+    color: Colors.textSecondary,
+  },
+  subMenuTextActive: {
+    color: Colors.textPrimary,
+    fontWeight: '700',
+  },
   scroll: {
     flex: 1,
     backgroundColor: Colors.background,
   },
   scrollContent: {
     paddingBottom: Spacing.xl,
+  },
+  combinedCard: {
+    marginHorizontal: Spacing.base,
+    marginTop: Spacing.base,
+    backgroundColor: Colors.surfaceLight,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    overflow: 'hidden',
   },
   bottomPad: {
     height: Spacing.xxl,

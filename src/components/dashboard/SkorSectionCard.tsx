@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Colors, Spacing, Typography} from '../../theme';
 import type {SkorSection} from '../../types';
@@ -8,7 +8,7 @@ interface SkorSectionCardProps {
   data: SkorSection;
 }
 
-const MAX_SKOR = 120;
+const MAX_SKOR = 100;
 const THRESHOLD_BAD = 30;
 const THRESHOLD_EXCELLENT = 80;
 
@@ -18,137 +18,195 @@ function getSkorColor(skor: number): string {
   return Colors.danger;
 }
 
+function getSkorBgColor(skor: number): string {
+  if (skor >= THRESHOLD_EXCELLENT) return Colors.successLight;
+  if (skor >= 60) return Colors.warningLight;
+  return Colors.dangerLight;
+}
+
 function GaugeBar({skor}: {skor: number}) {
-  const markerPct = Math.min((skor / MAX_SKOR) * 100, 100);
-  const badSegW = (THRESHOLD_BAD / MAX_SKOR) * 100;
-  const midSegW = ((THRESHOLD_EXCELLENT - THRESHOLD_BAD) / MAX_SKOR) * 100;
-  const goodSegW = 100 - badSegW - midSegW;
+  const [barWidth, setBarWidth] = useState(0);
+
+  const scorePct = Math.min(skor / MAX_SKOR, 1);
+  const badPct   = THRESHOLD_BAD / MAX_SKOR;
+  const goodPct  = THRESHOLD_EXCELLENT / MAX_SKOR;
+
+  const scoreX = barWidth * scorePct;
+  const badX   = barWidth * badPct;
+  const goodX  = barWidth * goodPct;
+
+  const color = getSkorColor(skor);
 
   return (
-    <View style={gaugeStyles.row}>
-      {/* Left badge */}
-      <View style={gaugeStyles.badgeBad}>
-        <Text style={gaugeStyles.badgeBadText}>{'< 30 Bad'}</Text>
+    <View
+      style={gaugeStyles.container}
+      onLayout={e => setBarWidth(e.nativeEvent.layout.width)}>
+
+      {/* ── Badge row ─────────────────────────────────── */}
+      <View style={gaugeStyles.badgeRow}>
+        {barWidth > 0 && (
+          <>
+            <View
+              style={[
+                gaugeStyles.badgeAbsolute,
+                {left: badX, transform: [{translateX: -26}]},
+              ]}>
+              <View style={gaugeStyles.badBadge}>
+                <Text style={gaugeStyles.badText}>≤ 30 Bad</Text>
+              </View>
+            </View>
+
+            <View
+              style={[
+                gaugeStyles.badgeAbsolute,
+                {left: goodX, transform: [{translateX: -42}]},
+              ]}>
+              <View style={gaugeStyles.goodBadge}>
+                <Text style={gaugeStyles.goodText}>≥ 80 Excellent</Text>
+              </View>
+            </View>
+          </>
+        )}
       </View>
 
-      {/* Bar + marker */}
-      <View style={gaugeStyles.barWrap}>
-        <View style={gaugeStyles.track}>
-          <View style={[gaugeStyles.seg, {width: `${badSegW}%`, backgroundColor: Colors.danger, borderTopLeftRadius: 3, borderBottomLeftRadius: 3}]} />
-          <View style={[gaugeStyles.seg, {width: `${midSegW}%`, backgroundColor: Colors.warning}]} />
-          <View style={[gaugeStyles.seg, {width: `${goodSegW}%`, backgroundColor: Colors.success, borderTopRightRadius: 3, borderBottomRightRadius: 3}]} />
-        </View>
-        {/* Marker */}
-        <View style={[gaugeStyles.markerWrap, {left: `${markerPct}%`}]}>
-          <View style={[gaugeStyles.markerPin, {backgroundColor: getSkorColor(skor)}]} />
-          <Text style={[gaugeStyles.markerNum, {color: getSkorColor(skor)}]}>{skor}</Text>
-        </View>
-      </View>
+      {/* ── Bar area ──────────────────────────────────── */}
+      <View style={gaugeStyles.barArea}>
+        <View style={gaugeStyles.track} />
 
-      {/* Right badge */}
-      <View style={gaugeStyles.badgeGood}>
-        <Text style={gaugeStyles.badgeGoodText}>{`> 80 Excellent`}</Text>
+        {barWidth > 0 && (
+          <View
+            style={[gaugeStyles.fill, {width: scoreX, backgroundColor: color}]}
+          />
+        )}
+
+        {barWidth > 0 && (
+          <View style={[gaugeStyles.thresholdLineBad, {left: badX - 1}]} />
+        )}
+
+        {barWidth > 0 && (
+          <View style={[gaugeStyles.thresholdLineGood, {left: goodX - 1}]} />
+        )}
+
+        {barWidth > 0 && (
+          <View
+            style={[gaugeStyles.scoreDot, {left: scoreX - 6, borderColor: color}]}
+          />
+        )}
       </View>
     </View>
   );
 }
 
 const gaugeStyles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.xs,
-    paddingHorizontal: Spacing.base,
-    marginBottom: Spacing.base,
+  container: {
+    flex: 1,
   },
-  badgeBad: {
+  badgeRow: {
+    height: 24,
+    position: 'relative',
+    marginBottom: 6,
+  },
+  badgeAbsolute: {
+    position: 'absolute',
+    top: 0,
+  },
+  badBadge: {
     backgroundColor: Colors.dangerLight,
-    paddingHorizontal: 5,
-    paddingVertical: 2,
-    borderRadius: 3,
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+    borderRadius: 4,
   },
-  badgeBadText: {
-    fontSize: 8,
+  badText: {
+    fontSize: 9,
     fontWeight: '700',
     color: Colors.dangerDark,
   },
-  badgeGood: {
+  goodBadge: {
     backgroundColor: Colors.successLight,
-    paddingHorizontal: 5,
-    paddingVertical: 2,
-    borderRadius: 3,
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+    borderRadius: 4,
   },
-  badgeGoodText: {
-    fontSize: 8,
+  goodText: {
+    fontSize: 9,
     fontWeight: '700',
     color: Colors.successDark,
   },
-  barWrap: {
-    flex: 1,
+  barArea: {
+    height: 20,
     position: 'relative',
-    height: 24,
     justifyContent: 'center',
   },
   track: {
-    flexDirection: 'row',
-    height: 6,
-    borderRadius: 3,
-    overflow: 'hidden',
-  },
-  seg: {
-    height: 6,
-  },
-  markerWrap: {
     position: 'absolute',
-    alignItems: 'center',
-    transform: [{translateX: -5}],
-    top: 0,
+    left: 0,
+    right: 0,
+    height: 10,
+    backgroundColor: Colors.border,
+    borderRadius: 5,
   },
-  markerPin: {
-    width: 10,
+  fill: {
+    position: 'absolute',
+    left: 0,
     height: 10,
     borderRadius: 5,
-    borderWidth: 2,
-    borderColor: Colors.surfaceLight,
   },
-  markerNum: {
-    fontSize: 9,
-    fontWeight: '800',
-    marginTop: 1,
+  thresholdLineBad: {
+    position: 'absolute',
+    width: 2,
+    height: 18,
+    backgroundColor: Colors.danger,
+    borderRadius: 1,
+    top: 1,
+  },
+  thresholdLineGood: {
+    position: 'absolute',
+    width: 2,
+    height: 18,
+    backgroundColor: Colors.success,
+    borderRadius: 1,
+    top: 1,
+  },
+  scoreDot: {
+    position: 'absolute',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: Colors.surfaceLight,
+    borderWidth: 3,
+    top: 4,
   },
 });
 
 export function SkorSectionCard({title, data}: SkorSectionCardProps) {
-  const skor = data.skor;
-  const skorColor = getSkorColor(skor);
+  const color = getSkorColor(data.skor);
 
   return (
     <View style={styles.card}>
-      {/* Header */}
+      {/* ── Header ───────────────────────────────────── */}
       <View style={styles.headerRow}>
-        <View style={styles.headerLeft}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={[styles.skorNum, {color: skorColor}]}>{skor}</Text>
-        </View>
+        <Text style={styles.title}>{title}</Text>
         <Text style={styles.periode}>{data.periode}</Text>
       </View>
 
-      {/* Gauge */}
-      <GaugeBar skor={skor} />
+      {/* ── Score box + Gauge ─────────────────────────── */}
+      <View style={styles.scoreGaugeRow}>
+        <View style={[styles.scoreBox, {backgroundColor: getSkorBgColor(data.skor)}]}>
+          <Text style={[styles.scoreBoxNum, {color}]}>{data.skor}</Text>
+        </View>
 
-      {/* Sub-metric scores */}
-      <View style={styles.divider} />
-      <View style={styles.itemsRow}>
-        {data.items.map((item, idx) => (
-          <React.Fragment key={item.id}>
-            {idx > 0 && <View style={styles.itemSep} />}
-            <View style={styles.subItem}>
-              <Text style={styles.subLabel} numberOfLines={2}>{item.nama}</Text>
-              <Text style={[styles.subSkor, {color: getSkorColor(item.skor)}]}>
-                {item.skor}
-              </Text>
-            </View>
-          </React.Fragment>
+        <GaugeBar skor={data.skor} />
+      </View>
+
+      {/* ── Sub-scores row ───────────────────────────── */}
+      <View style={styles.scoresRow}>
+        {data.items.map(item => (
+          <View key={item.id} style={styles.scoreItem}>
+            <Text style={styles.scoreLabel} numberOfLines={2}>{item.nama}</Text>
+            <Text style={[styles.scoreNum, {color: getSkorColor(item.skor)}]}>
+              {item.skor}
+            </Text>
+          </View>
         ))}
       </View>
     </View>
@@ -165,60 +223,63 @@ const styles = StyleSheet.create({
     borderColor: Colors.border,
     overflow: 'hidden',
     paddingTop: Spacing.base,
+    paddingHorizontal: Spacing.base,
+    paddingBottom: Spacing.sm,
   },
   headerRow: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: Spacing.base,
     marginBottom: Spacing.sm,
-  },
-  headerLeft: {
-    flexDirection: 'row',
-    alignItems: 'baseline',
-    gap: Spacing.sm,
   },
   title: {
     fontSize: Typography.fontSize.md,
     fontWeight: '700',
     color: Colors.textPrimary,
   },
-  skorNum: {
-    fontSize: Typography.fontSize.xxl,
-    fontWeight: '800',
-    lineHeight: 30,
-  },
   periode: {
     fontSize: Typography.fontSize.xs,
     color: Colors.textSecondary,
   },
-  divider: {
-    height: 1,
-    backgroundColor: Colors.border,
-  },
-  itemsRow: {
+  scoreGaugeRow: {
     flexDirection: 'row',
-    paddingHorizontal: Spacing.base,
-    paddingVertical: Spacing.sm,
+    alignItems: 'center',
+    gap: Spacing.base,
+    marginBottom: Spacing.base,
   },
-  subItem: {
+  scoreBox: {
+    width: 64,
+    height: 64,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
+  scoreBoxNum: {
+    fontSize: 36,
+    fontWeight: '800',
+    lineHeight: 44,
+  },
+  scoresRow: {
+    flexDirection: 'row',
+    gap: 4,
+  },
+  scoreItem: {
     flex: 1,
     alignItems: 'center',
-    paddingVertical: Spacing.xs,
+    paddingVertical: 6,
+    backgroundColor: Colors.background,
+    borderRadius: 6,
   },
-  subLabel: {
-    fontSize: 9,
+  scoreLabel: {
+    fontSize: 10,
     color: Colors.textSecondary,
-    textAlign: 'center',
     marginBottom: 3,
+    textAlign: 'center',
   },
-  subSkor: {
+  scoreNum: {
     fontSize: Typography.fontSize.base,
     fontWeight: '800',
-  },
-  itemSep: {
-    width: 1,
-    backgroundColor: Colors.border,
-    marginVertical: 4,
+    textAlign: 'center',
   },
 });

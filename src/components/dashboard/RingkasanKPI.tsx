@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import {Colors, Spacing, Typography} from '../../theme';
 import type {RingkasanKPI as RingkasanKPIType, MetricStatus} from '../../types';
@@ -21,7 +21,7 @@ function getCapaianBg(status: MetricStatus): string {
 
 export function RingkasanKPI({data}: RingkasanKPIProps) {
   const [activeKat, setActiveKat] = useState(data.kategoriList[0]);
-  const [activePeriod, setActivePeriod] = useState(data.periodList[1]); // MoM default
+  const [activePeriod, setActivePeriod] = useState(data.periodList[0]); // DoD default
 
   const katData = data.data[activeKat];
 
@@ -29,8 +29,11 @@ export function RingkasanKPI({data}: RingkasanKPIProps) {
     <View style={styles.card}>
       <Text style={styles.title}>Ringkasan KPI</Text>
 
-      {/* Kategori tabs */}
-      <View style={styles.katTabsRow}>
+      {/* Kategori tabs — horizontal scroll */}
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.katTabsRow}>
         {data.kategoriList.map(kat => {
           const isActive = activeKat === kat;
           return (
@@ -45,7 +48,7 @@ export function RingkasanKPI({data}: RingkasanKPIProps) {
             </TouchableOpacity>
           );
         })}
-      </View>
+      </ScrollView>
 
       {/* Period sub-tabs */}
       <View style={styles.periodRow}>
@@ -65,11 +68,13 @@ export function RingkasanKPI({data}: RingkasanKPIProps) {
         })}
       </View>
 
-      {/* Table */}
+      {/* Seksi cards */}
       {katData && katData.seksi.map(seksi => (
-        <View key={seksi.judul} style={styles.seksiBlock}>
-          {/* Section header */}
-          <Text style={styles.seksiTitle}>{seksi.judul}</Text>
+        <View key={seksi.judul} style={styles.seksiCard}>
+          {/* Card header */}
+          <View style={styles.seksiHeader}>
+            <Text style={styles.seksiTitle}>{seksi.judul}</Text>
+          </View>
 
           {/* Column headers */}
           <View style={styles.tableHeader}>
@@ -129,24 +134,20 @@ const styles = StyleSheet.create({
   },
   katTabsRow: {
     flexDirection: 'row',
-    backgroundColor: Colors.background,
-    borderRadius: 8,
-    padding: 3,
-    marginBottom: Spacing.sm,
+    gap: Spacing.xs,
+    paddingBottom: Spacing.sm,
   },
   katTab: {
-    flex: 1,
+    paddingHorizontal: Spacing.sm + 2,
     paddingVertical: 6,
-    alignItems: 'center',
-    borderRadius: 6,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    backgroundColor: Colors.surfaceLight,
   },
   katTabActive: {
-    backgroundColor: Colors.surfaceLight,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 1},
-    shadowOpacity: 0.06,
-    shadowRadius: 2,
-    elevation: 2,
+    backgroundColor: Colors.surfaceDark,
+    borderColor: Colors.surfaceDark,
   },
   katTabText: {
     fontSize: Typography.fontSize.xs,
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   katTabTextActive: {
-    color: Colors.textPrimary,
+    color: Colors.textWhite,
     fontWeight: '700',
   },
   periodRow: {
@@ -163,16 +164,16 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.base,
   },
   periodTab: {
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: 5,
-    borderRadius: 4,
+    paddingHorizontal: Spacing.sm + 2,
+    paddingVertical: 6,
+    borderRadius: 16,
     borderWidth: 1,
     borderColor: Colors.border,
     backgroundColor: Colors.surfaceLight,
   },
   periodTabActive: {
-    backgroundColor: Colors.primary,
-    borderColor: Colors.primary,
+    backgroundColor: Colors.surfaceDark,
+    borderColor: Colors.surfaceDark,
   },
   periodTabText: {
     fontSize: Typography.fontSize.xs,
@@ -183,17 +184,23 @@ const styles = StyleSheet.create({
     color: Colors.textWhite,
     fontWeight: '700',
   },
-  seksiBlock: {
-    marginBottom: Spacing.base,
+  seksiCard: {
+    borderWidth: 1,
+    borderColor: Colors.border,
+    borderRadius: 8,
+    overflow: 'hidden',
+    marginBottom: Spacing.sm,
+  },
+  seksiHeader: {
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: Spacing.xs + 2,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.border,
   },
   seksiTitle: {
     fontSize: Typography.fontSize.sm,
     fontWeight: '700',
     color: Colors.textPrimary,
-    marginBottom: Spacing.xs,
-    paddingBottom: Spacing.xs,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
   },
   tableHeader: {
     flexDirection: 'row',
@@ -201,7 +208,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
     backgroundColor: Colors.background,
-    paddingHorizontal: Spacing.xs,
+    paddingHorizontal: Spacing.sm,
   },
   colHeader: {
     fontSize: 9,
@@ -213,13 +220,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: Spacing.xs + 1,
-    paddingHorizontal: Spacing.xs,
+    paddingHorizontal: Spacing.sm,
     borderBottomWidth: 1,
     borderBottomColor: Colors.background,
   },
-  tableRowAlt: {
-    backgroundColor: Colors.background,
-  },
+  tableRowAlt: {},
   cell: {
     fontSize: Typography.fontSize.xs,
     color: Colors.textPrimary,
@@ -233,21 +238,26 @@ const styles = StyleSheet.create({
   },
   colMetrik: {
     flex: 2.2,
+    paddingRight: Spacing.xs,
   },
   colUreg: {
-    flex: 1.4,
+    flex: 1.3,
     textAlign: 'right',
+    paddingHorizontal: Spacing.xs,
   },
   colTarget: {
-    flex: 1.4,
+    flex: 1.3,
     textAlign: 'right',
+    paddingHorizontal: Spacing.xs,
   },
   colCapaian: {
-    flex: 1.4,
+    flex: 1.6,
+    paddingHorizontal: Spacing.xs,
   },
   colMom: {
-    flex: 1,
+    flex: 1.0,
     textAlign: 'right',
+    paddingHorizontal: Spacing.xs,
   },
   capaianPill: {
     paddingHorizontal: 5,

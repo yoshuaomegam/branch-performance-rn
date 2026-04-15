@@ -160,6 +160,117 @@ export interface RingkasanKPI {
   data: Record<string, KPIKategoriData>;
 }
 
+// Bisnis DPK types
+export interface DPKPerbandingan {
+  tanggal: string;
+  nilai: string;
+  growth: string;
+  growthUp: boolean;
+}
+
+export interface DPKEndingBalance {
+  label: string;
+  tanggal: string;
+  nilai: string;
+  target: string;
+  keterangan: string;
+  keteranganUp: boolean;
+  perbandingan: DPKPerbandingan[];
+}
+
+export interface BreakdownItem {
+  label: string;
+  pct: number;
+  warna: string;
+}
+
+export interface DPKTableRow {
+  produk: string;
+  cif: string;
+  balance: string;
+  target: string;
+  capaian: string;
+  growth: string;
+  growthUp: boolean;
+  balanceStatus: MetricStatus;
+  capaianStatus: MetricStatus;
+}
+
+export interface DPKBarTable {
+  judul: string;
+  periodList: string[];
+  breakdown: BreakdownItem[];
+  rows: DPKTableRow[];
+}
+
+export interface AkuisiChurnStat {
+  label: string;
+  nilai: string;
+  keterangan: string;
+  keteranganStatus: 'good' | 'warning' | 'bad' | 'neutral';
+}
+
+export interface AkuisiChurnRincian {
+  segmen: string;
+  akuisisi: number;
+  churn: number;
+  nett: number;
+  nettUp: boolean;
+}
+
+export interface AkuisiChurn {
+  stats: AkuisiChurnStat[];
+  rincian: AkuisiChurnRincian[];
+}
+
+export interface TrendSeries {
+  label: string;
+  warna: string;
+  nilai: (number | null)[];
+}
+
+export interface TrendMetrik {
+  nama: string;
+  y2024: string;
+  y2025: string;
+  y2026: string;
+}
+
+export interface TrendEndbal {
+  bulan: string[];
+  series: TrendSeries[];
+  metrik: TrendMetrik[];
+  catatan: string;
+}
+
+export interface BisnisDPK {
+  endingBalance: DPKEndingBalance;
+  rincianDPK: DPKBarTable;
+  tabungan3PI: DPKBarTable;
+  akuisiChurn: AkuisiChurn;
+  trendEndbal: TrendEndbal;
+}
+
+export interface PencapaianRow {
+  produk: string;
+  kategori: string;
+  aktual: string;
+  target: string;
+  capaian: string;
+  growth: string;
+  growthUp: boolean;
+  statusCapaian: MetricStatus;
+}
+
+export interface RingkasanPencapaian {
+  periodList: string[];
+  rows: PencapaianRow[];
+}
+
+export interface BisnisRingkasan {
+  ringkasanPencapaian: RingkasanPencapaian;
+}
+
 export interface DashboardData {
   cabang: CabangInfo;
   periode: string;

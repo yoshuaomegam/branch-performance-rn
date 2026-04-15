@@ -12,6 +12,7 @@ export function PesanRCEO({pesan}: PesanRCEOProps) {
     <View style={styles.card}>
       <View style={styles.labelRow}>
         <View style={styles.labelPill}>
+          <View style={styles.labelDot} />
           <Text style={styles.labelText}>Pesan RCEO!</Text>
         </View>
       </View>
@@ -25,37 +26,45 @@ const styles = StyleSheet.create({
   card: {
     marginHorizontal: Spacing.base,
     marginTop: Spacing.base,
-    marginBottom: 0,
-    backgroundColor: '#FFFBF0',
+    backgroundColor: Colors.surfaceDark,
     borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#F0D080',
     padding: Spacing.base,
+    borderWidth: 1,
+    borderColor: Colors.surfaceDark2,
   },
   labelRow: {
     marginBottom: Spacing.sm,
   },
   labelPill: {
     alignSelf: 'flex-start',
-    backgroundColor: '#FF9500',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: Colors.surfaceLight,
     paddingHorizontal: Spacing.sm,
-    paddingVertical: 3,
+    paddingVertical: 5,
     borderRadius: 4,
+    gap: Spacing.xs + 2,
+  },
+  labelDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: Colors.surfaceDark,
   },
   labelText: {
     fontSize: Typography.fontSize.xs,
     fontWeight: '700',
-    color: Colors.textWhite,
+    color: Colors.textPrimary,
   },
   teks: {
     fontSize: Typography.fontSize.sm,
-    color: '#3D2800',
+    color: Colors.textWhite,
     lineHeight: 18,
     marginBottom: Spacing.sm,
   },
   penulis: {
     fontSize: Typography.fontSize.xs,
-    color: '#7A5200',
+    color: Colors.textMuted,
     fontStyle: 'italic',
     textAlign: 'right',
   },

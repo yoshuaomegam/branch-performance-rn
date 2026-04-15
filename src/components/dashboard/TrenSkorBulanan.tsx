@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
-import Svg, {Polyline, Line, Circle, Text as SvgText} from 'react-native-svg';
+import Svg, {Path, Polyline, Line, Circle, Text as SvgText} from 'react-native-svg';
 import {Colors, Spacing, Typography} from '../../theme';
 import type {TrenSkor} from '../../types';
 
@@ -8,102 +8,113 @@ interface TrenSkorBulananProps {
   data: TrenSkor;
 }
 
-const CHART_HEIGHT = 120;
+// ── Chart constants ──────────────────────────────────────────
+const CHART_H  = 140;
 const LEFT_PAD = 32;
-const RIGHT_PAD = 8;
-const TOP_PAD = 10;
-const BOTTOM_PAD = 28;
-const Y_MIN = 65;
+const RIGHT_PAD = 10;
+const TOP_PAD   = 18;   // room for value labels above dots
+const BOTTOM_PAD = 42;  // room for x-axis labels
+const DATA_PAD = 13;    // gap between y-axis and first/last data point
+const Y_MIN = 70;
 const Y_MAX = 100;
-const Y_LINES = [70, 75, 80, 85, 90, 95, 100];
+const Y_LINES = [60, 70, 80, 90, 100];
 
-function mapY(val: number, h: number): number {
-  return TOP_PAD + ((Y_MAX - val) / (Y_MAX - Y_MIN)) * h;
+function yPos(val: number, innerH: number): number {
+  return TOP_PAD + ((Y_MAX - val) / (Y_MAX - Y_MIN)) * innerH;
 }
 
-function mapX(idx: number, count: number, w: number): number {
-  return LEFT_PAD + (idx / (count - 1)) * w;
+function xPos(idx: number, count: number, innerW: number): number {
+  return LEFT_PAD + DATA_PAD + (idx / (count - 1)) * (innerW - DATA_PAD * 2);
 }
 
-interface LineChartProps {
+/** SVG path for the filled area under the line */
+function areaPath(nilai: number[], innerW: number, innerH: number): string {
+  const n = nilai.length;
+  const bottomY = TOP_PAD + innerH;
+  const pts = nilai.map((v, i) => ({x: xPos(i, n, innerW), y: yPos(v, innerH)}));
+  const line = pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ');
+  return `${line} L${pts[n - 1].x},${bottomY} L${pts[0].x},${bottomY} Z`;
+}
+
+// ── Chart component ──────────────────────────────────────────
+interface ChartProps {
   width: number;
   data: TrenSkor;
   activeIds: string[];
 }
 
-function LineChart({width, data, activeIds}: LineChartProps) {
+function AreaLineChart({width, data, activeIds}: ChartProps) {
   const innerW = width - LEFT_PAD - RIGHT_PAD;
-  const innerH = CHART_HEIGHT - TOP_PAD - BOTTOM_PAD;
-  const totalH = CHART_HEIGHT;
+  const innerH = CHART_H - TOP_PAD - BOTTOM_PAD;
 
-  const activeLines = data.data.filter(d => activeIds.includes(d.id));
+  const series = data.data.filter(d => activeIds.includes(d.id));
+  const single = series.length === 1; // show fill + labels only for single series
 
   return (
-    <Svg width={width} height={totalH}>
-      {/* Horizontal grid lines */}
-      {Y_LINES.map(yVal => {
-        const yPx = mapY(yVal, innerH);
+    <Svg width={width} height={CHART_H}>
+
+      {/* ── Grid lines ──────────────────────────────────── */}
+      {Y_LINES.map(yv => {
+        const y = yPos(yv, innerH);
         return (
           <Line
-            key={yVal}
-            x1={LEFT_PAD}
-            y1={yPx}
-            x2={LEFT_PAD + innerW}
-            y2={yPx}
+            key={yv}
+            x1={LEFT_PAD} y1={y}
+            x2={LEFT_PAD + innerW} y2={y}
             stroke={Colors.border}
             strokeWidth={0.8}
-            strokeDasharray={yVal === 80 ? '4,3' : undefined}
+            strokeDasharray={yv === 80 ? '4,3' : undefined}
           />
         );
       })}
 
-      {/* Y-axis labels */}
-      {Y_LINES.map(yVal => {
-        const yPx = mapY(yVal, innerH);
-        return (
-          <SvgText
-            key={`l-${yVal}`}
-            x={LEFT_PAD - 4}
-            y={yPx + 4}
-            fontSize={8}
-            fill={Colors.textSecondary}
-            textAnchor="end">
-            {yVal}
-          </SvgText>
-        );
-      })}
+      {/* ── Y-axis labels ───────────────────────────────── */}
+      {Y_LINES.map(yv => (
+        <SvgText
+          key={`y-${yv}`}
+          x={LEFT_PAD - 4}
+          y={yPos(yv, innerH) + 3.5}
+          fontSize={8}
+          fill={Colors.textSecondary}
+          textAnchor="end">
+          {yv}
+        </SvgText>
+      ))}
 
-      {/* X-axis labels */}
-      {data.bulan.map((bulan, i) => {
-        const xPx = mapX(i, data.bulan.length, innerW);
-        return (
-          <SvgText
-            key={`x-${bulan}`}
-            x={xPx}
-            y={totalH - 4}
-            fontSize={8}
-            fill={Colors.textSecondary}
-            textAnchor="middle">
-            {bulan}
-          </SvgText>
-        );
-      })}
+      {/* ── X-axis labels ───────────────────────────────── */}
+      {data.bulan.map((b, i) => (
+        <SvgText
+          key={`x-${b}`}
+          x={xPos(i, data.bulan.length, innerW)}
+          y={CHART_H - 5}
+          fontSize={8}
+          fill={Colors.textSecondary}
+          textAnchor="middle">
+          {b}
+        </SvgText>
+      ))}
 
-      {/* Data lines */}
-      {activeLines.map(series => {
-        const points = series.nilai
-          .map((val, i) => {
-            const x = mapX(i, data.bulan.length, innerW);
-            const y = mapY(val, innerH);
-            return `${x},${y}`;
-          })
+      {/* ── Area fill (single series only) ──────────────── */}
+      {single && series.map(s => (
+        <Path
+          key={`fill-${s.id}`}
+          d={areaPath(s.nilai, innerW, innerH)}
+          fill={s.warna}
+          fillOpacity={0.12}
+        />
+      ))}
+
+      {/* ── Lines ───────────────────────────────────────── */}
+      {series.map(s => {
+        const pts = s.nilai
+          .map((v, i) => `${xPos(i, data.bulan.length, innerW)},${yPos(v, innerH)}`)
           .join(' ');
         return (
           <Polyline
-            key={series.id}
-            points={points}
+            key={s.id}
+            points={pts}
             fill="none"
-            stroke={series.warna}
+            stroke={s.warna}
             strokeWidth={2}
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -111,21 +122,40 @@ function LineChart({width, data, activeIds}: LineChartProps) {
         );
       })}
 
-      {/* Data points */}
-      {activeLines.map(series =>
-        series.nilai.map((val, i) => {
-          const x = mapX(i, data.bulan.length, innerW);
-          const y = mapY(val, innerH);
+      {/* ── Dots ────────────────────────────────────────── */}
+      {series.map(s =>
+        s.nilai.map((v, i) => {
+          const cx = xPos(i, data.bulan.length, innerW);
+          const cy = yPos(v, innerH);
           return (
             <Circle
-              key={`${series.id}-${i}`}
-              cx={x}
-              cy={y}
-              r={3}
-              fill={series.warna}
+              key={`dot-${s.id}-${i}`}
+              cx={cx} cy={cy}
+              r={3.5}
+              fill={s.warna}
               stroke={Colors.surfaceLight}
               strokeWidth={1.5}
             />
+          );
+        }),
+      )}
+
+      {/* ── Value labels above dots (single series only) ── */}
+      {single && series.map(s =>
+        s.nilai.map((v, i) => {
+          const cx = xPos(i, data.bulan.length, innerW);
+          const cy = yPos(v, innerH);
+          return (
+            <SvgText
+              key={`lbl-${s.id}-${i}`}
+              x={cx}
+              y={cy - 7}
+              fontSize={9}
+              fontWeight="700"
+              fill={s.warna}
+              textAnchor="middle">
+              {v}
+            </SvgText>
           );
         }),
       )}
@@ -133,15 +163,16 @@ function LineChart({width, data, activeIds}: LineChartProps) {
   );
 }
 
+// ── Main component (no outer card — wrapped by screen) ───────
 export function TrenSkorBulanan({data}: TrenSkorBulananProps) {
-  const [activeTab, setActiveTab] = useState('semua');
+  const [activeTab, setActiveTab]   = useState('semua');
   const [chartWidth, setChartWidth] = useState(300);
 
-  const activeTabData = data.data.find(d => d.id === activeTab);
-  const activeIds = activeTab === 'semua' ? data.data.map(d => d.id) : [activeTab];
+  // "Semua" → show the aggregate line only (not all 5 lines)
+  const activeIds = activeTab === 'semua' ? ['semua'] : [activeTab];
 
   return (
-    <View style={styles.card}>
+    <View style={styles.container}>
       {/* Header */}
       <View style={styles.headerRow}>
         <Text style={styles.title}>Tren Skor Bulanan</Text>
@@ -159,12 +190,12 @@ export function TrenSkorBulanan({data}: TrenSkorBulananProps) {
             <TouchableOpacity
               key={d.id}
               onPress={() => setActiveTab(d.id)}
-              style={[styles.tabPill, isActive && styles.tabPillActive]}
+              style={[styles.pill, isActive && styles.pillActive]}
               activeOpacity={0.8}>
               {isActive && d.id !== 'semua' && (
-                <View style={[styles.tabDot, {backgroundColor: d.warna}]} />
+                <View style={[styles.pillDot, {backgroundColor: d.warna}]} />
               )}
-              <Text style={[styles.tabText, isActive && styles.tabTextActive]}>
+              <Text style={[styles.pillText, isActive && styles.pillTextActive]}>
                 {d.nama}
               </Text>
             </TouchableOpacity>
@@ -174,42 +205,25 @@ export function TrenSkorBulanan({data}: TrenSkorBulananProps) {
 
       {/* Chart */}
       <View
-        onLayout={e => setChartWidth(e.nativeEvent.layout.width)}
-        style={styles.chartContainer}>
+        style={styles.chartWrap}
+        onLayout={e => setChartWidth(e.nativeEvent.layout.width)}>
         {chartWidth > 0 && (
-          <LineChart
+          <AreaLineChart
             width={chartWidth}
             data={data}
             activeIds={activeIds}
           />
         )}
       </View>
-
-      {/* Legend */}
-      {activeTab === 'semua' && (
-        <View style={styles.legend}>
-          {data.data.filter(d => d.id !== 'semua').map(d => (
-            <View key={d.id} style={styles.legendItem}>
-              <View style={[styles.legendDot, {backgroundColor: d.warna}]} />
-              <Text style={styles.legendText}>{d.nama}</Text>
-            </View>
-          ))}
-        </View>
-      )}
     </View>
   );
 }
 
+// ── Styles ───────────────────────────────────────────────────
 const styles = StyleSheet.create({
-  card: {
-    marginHorizontal: Spacing.base,
-    marginTop: Spacing.base,
-    backgroundColor: Colors.surfaceLight,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: Colors.border,
-    overflow: 'hidden',
+  container: {
     paddingTop: Spacing.base,
+    paddingBottom: Spacing.sm,
   },
   headerRow: {
     flexDirection: 'row',
@@ -233,58 +247,37 @@ const styles = StyleSheet.create({
     gap: Spacing.xs,
     flexDirection: 'row',
   },
-  tabPill: {
+  pill: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: 5,
-    borderRadius: 14,
+    paddingHorizontal: Spacing.sm + 2,
+    paddingVertical: 6,
+    borderRadius: 16,
     borderWidth: 1,
     borderColor: Colors.border,
     backgroundColor: Colors.surfaceLight,
     gap: 4,
   },
-  tabPillActive: {
+  pillActive: {
     backgroundColor: Colors.surfaceDark,
     borderColor: Colors.surfaceDark,
   },
-  tabDot: {
+  pillDot: {
     width: 6,
     height: 6,
     borderRadius: 3,
   },
-  tabText: {
+  pillText: {
     fontSize: Typography.fontSize.xs,
     color: Colors.textSecondary,
     fontWeight: '500',
   },
-  tabTextActive: {
+  pillTextActive: {
     color: Colors.textWhite,
     fontWeight: '700',
   },
-  chartContainer: {
-    paddingHorizontal: Spacing.sm,
-    marginBottom: Spacing.sm,
-  },
-  legend: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    paddingHorizontal: Spacing.base,
-    paddingBottom: Spacing.base,
-    gap: Spacing.sm,
-  },
-  legendItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-  },
-  legendDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-  },
-  legendText: {
-    fontSize: 9,
-    color: Colors.textSecondary,
+  chartWrap: {
+    marginHorizontal: Spacing.base,
+    paddingBottom: Spacing.xs,
   },
 });

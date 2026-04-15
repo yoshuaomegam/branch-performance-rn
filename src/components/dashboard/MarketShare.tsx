@@ -8,36 +8,48 @@ interface MarketShareProps {
 }
 
 export function MarketShare({data}: MarketShareProps) {
-  const maxPct = Math.max(...data.banks.map(b => b.pct));
+  const totalPct = data.banks.reduce((s, b) => s + b.pct, 0) || 1;
 
   return (
     <View style={styles.card}>
-      <Text style={styles.title}>Market Share - {data.area}</Text>
-
-      {/* Bank logos / color indicators row */}
-      <View style={styles.banksRow}>
-        {data.banks.map(bank => (
-          <View key={bank.id} style={styles.bankTag}>
-            <View style={[styles.bankDot, {backgroundColor: bank.warna}]} />
-            <Text style={styles.bankName}>{bank.nama}</Text>
-          </View>
-        ))}
+      <View style={styles.headerRow}>
+        <Text style={styles.title}>Market Share - {data.area}</Text>
       </View>
 
-      {/* Bars */}
-      <View style={styles.barsContainer}>
-        {data.banks.map(bank => {
-          const barPct = (bank.pct / maxPct) * 100;
+      {/* Single proportional stacked bar */}
+      <View style={styles.stackedBar}>
+        {data.banks.map((bank, idx) => {
+          const segFlex = bank.pct / totalPct;
+          const isFirst = idx === 0;
+          const isLast = idx === data.banks.length - 1;
           return (
-            <View key={bank.id} style={styles.barRow}>
-              <Text style={styles.barLabel}>{bank.nama}</Text>
-              <View style={styles.barTrack}>
-                <View style={[styles.barFill, {width: `${barPct}%`, backgroundColor: bank.warna}]} />
-              </View>
-              <Text style={styles.barValue}>{bank.pct}%</Text>
+            <View
+              key={bank.id}
+              style={[
+                styles.stackSeg,
+                {
+                  flex: segFlex,
+                  backgroundColor: bank.warna,
+                  borderTopLeftRadius: isFirst ? 8 : 0,
+                  borderBottomLeftRadius: isFirst ? 8 : 0,
+                  borderTopRightRadius: isLast ? 8 : 0,
+                  borderBottomRightRadius: isLast ? 8 : 0,
+                },
+              ]}>
+              <Text style={styles.segLabel} numberOfLines={1}>{bank.nama}</Text>
             </View>
           );
         })}
+      </View>
+
+      {/* Legend below bar */}
+      <View style={styles.legendRow}>
+        {data.banks.map(bank => (
+          <View key={bank.id} style={styles.legendItem}>
+            <View style={[styles.legendDot, {backgroundColor: bank.warna}]} />
+            <Text style={styles.legendText}>{bank.nama} {bank.pct}%</Text>
+          </View>
+        ))}
       </View>
     </View>
   );
@@ -54,66 +66,55 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     padding: Spacing.base,
   },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    gap: Spacing.sm,
+    marginBottom: Spacing.sm,
+  },
   title: {
     fontSize: Typography.fontSize.md,
     fontWeight: '700',
     color: Colors.textPrimary,
-    marginBottom: Spacing.sm,
   },
-  banksRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: Spacing.xs,
-    marginBottom: Spacing.sm,
-  },
-  bankTag: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    backgroundColor: Colors.background,
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: 3,
-    borderRadius: 4,
-  },
-  bankDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-  },
-  bankName: {
-    fontSize: Typography.fontSize.xs,
-    color: Colors.textPrimary,
-    fontWeight: '600',
-  },
-  barsContainer: {
-    gap: Spacing.sm,
-  },
-  barRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
-  },
-  barLabel: {
+  areaLabel: {
     fontSize: Typography.fontSize.xs,
     color: Colors.textSecondary,
-    width: 44,
-  },
-  barTrack: {
     flex: 1,
-    height: 10,
-    backgroundColor: Colors.background,
-    borderRadius: 5,
+  },
+  stackedBar: {
+    flexDirection: 'row',
+    height: 28,
+    borderRadius: 8,
     overflow: 'hidden',
+    marginBottom: Spacing.sm,
   },
-  barFill: {
-    height: 10,
-    borderRadius: 5,
+  stackSeg: {
+    height: 28,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  barValue: {
-    fontSize: Typography.fontSize.xs,
-    fontWeight: '600',
-    color: Colors.textPrimary,
-    width: 36,
-    textAlign: 'right',
+  segLabel: {
+    fontSize: 9,
+    fontWeight: '700',
+    color: 'rgba(255,255,255,0.9)',
+  },
+  legendRow: {
+    flexDirection: 'row',
+    gap: Spacing.xs,
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 3,
+  },
+  legendDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 1,
+  },
+  legendText: {
+    fontSize: 8,
+    color: Colors.textSecondary,
   },
 });

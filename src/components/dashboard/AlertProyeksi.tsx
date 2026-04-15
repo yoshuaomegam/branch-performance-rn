@@ -13,24 +13,25 @@ interface AlertCardProps {
 
 function AlertCard({item}: AlertCardProps) {
   const isBuruk = item.tipe === 'buruk';
-  const borderColor = isBuruk ? Colors.danger : Colors.warning;
-  const bgColor = isBuruk ? Colors.dangerLight : Colors.warningLight;
-  const labelBg = isBuruk ? Colors.danger : Colors.warning;
-  const labelColor = Colors.textWhite;
+  const borderColor  = isBuruk ? Colors.danger     : Colors.warning;
+  const dotColor     = isBuruk ? Colors.danger     : Colors.warning;
+  const labelBg      = isBuruk ? Colors.dangerLight  : Colors.warningLight;
+  const labelTextColor = isBuruk ? Colors.dangerDark : Colors.warningDark;
 
   return (
-    <View style={[styles.alertCard, {borderLeftColor: borderColor, backgroundColor: bgColor}]}>
+    <View style={[styles.alertCard, {borderLeftColor: borderColor}]}>
       <View style={styles.alertHeader}>
         <View style={[styles.alertLabel, {backgroundColor: labelBg}]}>
-          <Text style={[styles.alertLabelText, {color: labelColor}]}>{item.label}</Text>
+          <View style={[styles.labelDot, {backgroundColor: dotColor}]} />
+          <Text style={[styles.alertLabelText, {color: labelTextColor}]}>{item.label}</Text>
         </View>
       </View>
-      <Text style={styles.alertJudul}>{item.judul}</Text>
+      <Text style={[styles.alertJudul, {color: isBuruk ? Colors.dangerDark : Colors.warningDark}]}>{item.judul}</Text>
       <Text style={styles.alertDeskripsi}>{item.deskripsi}</Text>
       {item.cta ? (
-        <Text style={[styles.alertCta, {color: isBuruk ? Colors.dangerDark : Colors.warningDark}]}>
-          {item.cta}
-        </Text>
+        <View style={styles.ctaBox}>
+          <Text style={styles.alertCta}>{item.cta}</Text>
+        </View>
       ) : null}
     </View>
   );
@@ -65,11 +66,12 @@ const styles = StyleSheet.create({
     fontSize: Typography.fontSize.md,
     fontWeight: '700',
     color: Colors.textPrimary,
-    marginBottom: Spacing.sm,
+    marginBottom: Spacing.base,
   },
   alertCard: {
-    borderLeftWidth: 4,
-    borderRadius: 6,
+    borderLeftWidth: 3,
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
     padding: Spacing.sm + 2,
     marginBottom: Spacing.sm,
   },
@@ -78,9 +80,17 @@ const styles = StyleSheet.create({
   },
   alertLabel: {
     alignSelf: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
     paddingHorizontal: Spacing.sm,
-    paddingVertical: 2,
+    paddingVertical: 3,
     borderRadius: 4,
+  },
+  labelDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
   },
   alertLabelText: {
     fontSize: 9,
@@ -97,10 +107,17 @@ const styles = StyleSheet.create({
     color: Colors.textSecondary,
     lineHeight: 16,
   },
+  ctaBox: {
+    marginTop: Spacing.sm,
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: Spacing.xs,
+    borderRadius: 6,
+    backgroundColor: Colors.background,
+  },
   alertCta: {
     fontSize: Typography.fontSize.xs,
-    fontWeight: '600',
-    marginTop: Spacing.xs,
+    fontWeight: '700',
+    color: Colors.textSecondary,
     lineHeight: 16,
   },
 });
